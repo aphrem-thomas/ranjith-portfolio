@@ -11,8 +11,8 @@ const anton = Anton({
 function WorkBanner () {
     // const [activeTab, setActiveTab] = useState('home')
     return(
-        <div className="banner w-screen mt-40 bg-text p-5 flex flex-col items-center">
-            <h3 className="text-white mb-5 text-3xl">I have membership in</h3>
+        <div className="banner w-screen mt-40 bg-text p-5 flex flex-col h-full items-center">
+            <h3 className="text-background mb-5 text-3xl">I am a member of</h3>
             <div className="worklist flex flex-wrap justify-around container">
                 <div className="logo">
                     <img className="w-40 h-14 object-contains grayscale"src="iccc.png"/>

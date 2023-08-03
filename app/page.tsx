@@ -18,7 +18,7 @@ export default function Home() {
           </div>
           <div className="intro flex flex-1 flex-col justify-center relative">
             <div className="hello -left-20 top-16 absolute text-6xl bg-text h-24 w-80 mb-10 flex flex-col justify-center items-center">
-              <p className="text-background ">Hi it's Ranjith...</p>
+              <p className="text-background ">Hi it&apos;s Ranjith...</p>
             </div>
             <div className="statement h-44 ml-5 w-80 text-xl">
               <p>
