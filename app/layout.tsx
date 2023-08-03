@@ -1,9 +1,13 @@
+import Navbar from '@/components/navbar/navbar'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Barlow_Condensed } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
-
+const Barlow = Barlow_Condensed({
+  subsets: ['latin'],
+  weight: '400',
+  variable:'--barlow-font'
+})
 export const metadata: Metadata = {
   title: 'Ranjith Mathew',
 }
@@ -15,7 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`text-text ${Barlow.className} bg-background`}>
+        <Navbar/>
+        {children}
+      </body>
     </html>
   )
 }

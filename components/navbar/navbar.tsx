@@ -1,14 +1,32 @@
+'use client'
+// import { useState } from "react";
+import {Anton} from 'next/font/google'
+import Link from "next/link";
+import { usePathname } from 'next/navigation';
+
+
+
+const anton = Anton({
+    subsets: ['latin'],
+    weight: '400',
+    variable:'--anton-font'
+  })
+
 function Navbar () {
+    {/* Get the current route */}
+    const currentRoute = usePathname();
+    console.log("currentRoute",currentRoute);
+    // const [activeTab, setActiveTab] = useState('home')
     return(
-        <div className="flex flex-row container h-10 items-center">
-            <div className="tradeMark w-52">RM</div>
-            <div className="navigation flex flex-row justify-around container">
-                <div className="home w-10">Home</div>
-                <div className="home w-10">Contact</div>
-                <div className="home w-10">Works</div>
+        <nav className="flex flex-row container text-2xl h-10 items-center mt-7 mb-7">
+            <div className={`tradeMark ml-20 w-52 ${anton.className}`}>Ranjith Mathew</div>
+            <div className="navigation underline-offset-8 decoration-primary flex flex-row justify-end container text-2xl">
+                <Link className={`home ${currentRoute==='/'?'underline':''}  w-10 ml-10`} href="/">Home</Link>
+                <Link className={`home ${currentRoute==='/contact'?'underline':''} w-10 ml-10`} href="/contact">Contact</Link>
+                <Link className={`home ${currentRoute==='/works'?'underline':''} w-10 ml-10`} href="/works">Works</Link>
             </div>
             
-        </div>
+        </nav>
     )
 }
 
