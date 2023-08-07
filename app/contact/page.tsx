@@ -8,12 +8,13 @@ function Contacts() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [resume, setResume] = useState<any>('')
+    const [description, setDescription] = useState<any>('')
     async function handleSubmit(){
         const formData = new FormData()
         formData.append("name", name)
         formData.append('email',email)
-        // formData.append('resume', resume)
-        console.log("formData",formData)
+        formData.append('resume', resume)
+        formData.append('description', description)
         await fetch('api/contact/',{
             method:'POST',
             body:formData
@@ -42,6 +43,13 @@ function Contacts() {
                             </label>
                             <input onChange={(e)=>setEmail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com"/>
                                 <p className="text-red-500 text-xs italic">Please enter email.</p>
+                        </div>
+                        <div className="mb-6">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                Message
+                            </label>
+                            <textarea onChange={(e)=>setDescription(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"/>
+                                <p className="text-red-500 text-xs italic">Enter description</p>
                         </div>
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
