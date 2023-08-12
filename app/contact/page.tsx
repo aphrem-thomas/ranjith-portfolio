@@ -1,36 +1,58 @@
 'use client'
 
+import AlertMessage from "@/components/alertMessage/AlertMessage"
 import { useState } from "react"
 
 
 function Contacts() {
 
+    const [message, setMessage] = useState('')
+    const [type, setType] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [resume, setResume] = useState<any>('')
     const [description, setDescription] = useState<any>('')
+    const [alert, showAlert] = useState(false)
+    
     async function handleSubmit(){
+        console.log("in submit", alert)
+        if(name==='' || email ==='' ||resume ==='' ||description===''){
+            setType('error')
+            setMessage('Please fill all fields')
+            showAlert(true)
+            console.log("ale ale", alert)
+            return
+        }
         const formData = new FormData()
         formData.append("name", name)
         formData.append('email',email)
         formData.append('resume', resume)
         formData.append('description', description)
-        await fetch('api/contact/',{
+        let resp = await fetch('api/contact',{
             method:'POST',
-            body:formData
+            body:formData,
+            cache: "no-cache",
+            mode: "no-cors",
         })
+        if(resp.ok){
+            setType('success')
+            setMessage('Successfully submitted your data')
+            showAlert(true)
+        }
     }
     return (
-        <div className="contactsMain container flex">
-            <div className="disclaimer w-full ">
-                <h1>Submit the form for free Resume review</h1>
-                <div className="disclaimerMessage">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia officiis temporibus placeat adipisci animi sint doloremque quaerat, eligendi impedit distinctio tempore minima eos sit ipsam culpa, incidunt aliquam commodi explicabo!
-                </div>
+        <>
+        <div className="contactsMain container ml-20 flex mt-20">
+            <div className="disclaimer w-3/5 mr-10">
+                <h1 className="text-2xl font-bold">Submit the form for free Resume review</h1>
+                <div className="disclaimerMessage mt-10 leading-6">
+                <p>As the Technical Resource Manager, my primary responsibilities encompass generating fresh sales leads, overseeing account management, and adeptly identifying outstanding technical talents, particularly for software and hardware development enterprises throughout North America. Leveraging my remarkable networking skills and talent for fostering relationships, I excel at engaging with clients and aiding them in forming high-achieving teams. </p>
+                <p>Beyond my professional endeavors, I derive immense satisfaction from forging community ties and offering invaluable career guidance to newcomers in Canada. My profound dedication to nurturing skills in the leaders of tomorrow drives me to actively participate in volunteer work for non-profit organizations and educational institutions.</p>
+                <p>When I seek moments of serenity and a deeper connection with the natural world, I find solace in the art of fishing. Whether it involves casting a line in a nearby river or embarking on an excursion to a tranquil fishing spot, fishing serves as a means of relaxation and reconnection for me.</p></div>
             </div>
-            <div className="contactForm w-full ">
+            <div className="contactForm w-2/5">
                 <div className="w-full">
-                    <form className="bg-background-1 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <div className="bg-background-1 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Name
@@ -63,14 +85,16 @@ function Contacts() {
                                 <p className="text-red-500 text-xs italic">Please attach resume in pdf.</p>
                         </div>
                         <div className="flex items-center justify-between">
-                            <button onClick={handleSubmit}type="submit" className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            <button onClick={handleSubmit} className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                                 Submit
                             </button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
+        {alert && <AlertMessage message={message} type={type} closeAlert={()=>showAlert(false)}/>}
+        </>
     )
 }
 

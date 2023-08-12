@@ -5,9 +5,10 @@ export async function POST(request:Request,response:Response){
     const dat = await request.formData()
     let files:any = await dat.get('resume');
     const EMAIL = process.env.EMAIL
+    const TOEMAIL = process.env.TOEMAIL
     const info = await transporter.sendMail({
         from: `"No-reply-resume review 👻" <${EMAIL}>`, // sender address
-        to: EMAIL, // list of receivers
+        to: TOEMAIL, // list of receivers
         subject: `Resume review for ${dat.get('name')}`, // Subject line
         text: `contact email${dat.get('email')}`, // plain text body
         html: `
@@ -25,5 +26,5 @@ export async function POST(request:Request,response:Response){
         ]
       });
     console.log("after sending email", info)
-    return new Response('200')
+    return new Response('done',{status:200})
 }

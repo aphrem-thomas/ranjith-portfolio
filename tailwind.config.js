@@ -25,6 +25,7 @@ module.exports = {
       'primary': '#1392cb',
       'secondary': '#b2bfeb',
       'accent': '#4e2ca5',
+      'hazard':'#d41d6d'
     }
   },
   plugins: [],
