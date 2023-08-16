@@ -1,7 +1,8 @@
-import transporter from "@/config/mailer"
+import transporter from '@/app/config/mailer';
 import arrayBufferToBuffer from 'arraybuffer-to-buffer'
+import { NextRequest } from "next/server";
 
-export async function POST(request:Request,response:Response){
+export async function POST(request:NextRequest,response:Response){
     const dat = await request.formData()
     let files:any = await dat.get('resume');
     const EMAIL = process.env.EMAIL
