@@ -1,10 +1,11 @@
 import User from "@/app/model/user.model";
 import {connect} from '@/app/config/db.config'
 import bcrypt from 'bcrypt'
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import jwt from 'jsonwebtoken'
+import { authenticate } from "@/app/helper/authenticate";
 
-export async function POST(request:Request){
+export async function POST(request:NextRequest){
     try{
     connect()
     const saltRounds = 10;
@@ -22,7 +23,12 @@ export async function POST(request:Request){
     let dbUserData = await User.findOne({username:username})
     console.log("dbuser", dbUserData)
     if(dbUserData){
-        let comp = await bcrypt.compare(pwd, dbUserData.password);
+        let authResp = await authenticate(request)
+        if(authResp){
+            return NextResponse.json({ error: 'success' }, { status: 301 });
+        }
+        let comp = await bcrypt.compare(pwd, dbUserData.password); 
+        console.log("comp",comp)
         if (comp){
             var token = jwt.sign({ user:username }, KEY!,{ expiresIn: '1h' });
             console.log("token->",token)
