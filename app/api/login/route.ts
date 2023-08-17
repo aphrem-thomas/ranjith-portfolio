@@ -9,29 +9,15 @@ export async function POST(request:NextRequest){
     try{
     connect()
     const saltRounds = 10;
-    let erro;
-    let myPlaintextPassword = '';
     const dat = await request.formData()
     let username:any = await dat.get('username');
     let pwd:any = await dat.get('password');
-    const EMAIL = process.env.EMAIL
-    const TOEMAIL = process.env.TOEMAIL
     const KEY = process.env.SIGN_HASH
-    myPlaintextPassword=pwd;
-    console.log("username: ", username)
-    console.log("password: ", pwd)
     let dbUserData = await User.findOne({username:username})
-    console.log("dbuser", dbUserData)
     if(dbUserData){
-        let authResp = await authenticate(request)
-        if(authResp){
-            return NextResponse.json({ error: 'success' }, { status: 301 });
-        }
         let comp = await bcrypt.compare(pwd, dbUserData.password); 
-        console.log("comp",comp)
         if (comp){
             var token = jwt.sign({ user:username }, KEY!,{ expiresIn: '1h' });
-            console.log("token->",token)
             dbUserData.verifyToken = token;
             dbUserData.save()
             let rsp =NextResponse.json({ error: 'success' }, { status: 200 });
