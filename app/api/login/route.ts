@@ -20,7 +20,7 @@ export async function POST(request:NextRequest){
             var token = jwt.sign({ user:username }, KEY!,{ expiresIn: '1h' });
             dbUserData.verifyToken = token;
             dbUserData.save()
-            let rsp =NextResponse.json({ error: 'success' }, { status: 200 });
+            let rsp =NextResponse.json({ message: 'success' }, { status: 200 });
             rsp.cookies.set("token",token,{ httpOnly: true })
             return rsp;
         }
