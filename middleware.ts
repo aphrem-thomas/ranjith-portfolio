@@ -15,12 +15,12 @@ export async function middleware(request: NextRequest) {
           return NextResponse.redirect(new URL('/', request.url))
         }
       } catch (e) {
-        return NextResponse.redirect(new URL('/login', request.url))
+        return
       }
     }
     
 }
  
 export const config = {
-  matcher: '/blogs/:path*',
+  matcher: '/login/:path*',
 }
