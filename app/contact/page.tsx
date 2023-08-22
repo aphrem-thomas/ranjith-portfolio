@@ -13,14 +13,12 @@ function Contacts() {
     const [resume, setResume] = useState<any>('')
     const [description, setDescription] = useState<any>('')
     const [alert, showAlert] = useState(false)
-    
+
     async function handleSubmit(){
-        console.log("in submit", alert)
         if(name==='' || email ==='' ||resume ==='' ||description===''){
             setType('error')
             setMessage('Please fill all fields')
             showAlert(true)
-            console.log("ale ale", alert)
             return
         }
         const formData = new FormData()
