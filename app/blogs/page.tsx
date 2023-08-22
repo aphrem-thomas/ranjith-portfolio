@@ -13,6 +13,7 @@ function Blogs(props: any) {
     const [type, setType] = useState<any>('')
     const [alert, showAlert] = useState(false)
     const [blogs, setBlogs] = useState([])
+    const [thumbnail, setThumbnail] = useState('');
 
     useEffect(()=>{
         fetch('/api/blogs').then((res)=>{
@@ -23,12 +24,10 @@ function Blogs(props: any) {
 
     },[])
     async function handleSubmit() {
-        console.log("in submit", alert)
         if (name === '' || email === '' || article === '' || tags === '') {
             setType('error')
             setMessage('Please fill all fields')
             showAlert(true)
-            console.log("ale ale", alert)
             return
         }
         const formData = new FormData()
@@ -36,6 +35,7 @@ function Blogs(props: any) {
         formData.append('email', email)
         formData.append('article', article)
         formData.append('tags', tags)
+        formData.append('thumbnail', thumbnail)
         let resp = await fetch('api/blogs', {
             method: 'POST',
             body: formData,
@@ -48,10 +48,23 @@ function Blogs(props: any) {
             showAlert(true)
         }
     }
+
+    function processArticle(mdfile:any){
+        let fr = new FileReader()
+        fr.readAsText(mdfile);
+        fr.onload = ()=>{
+            setArticle(fr.result)
+        }
+        fr.onerror = ()=>{
+            setType('error')
+            setMessage('error in reading file')
+            showAlert(true)
+        }
+    }
     return (
         <>
-            <div className="blogmain flex">
-                <div className="showblogs">
+            <div className="blogmain ml-20 flex mt-20 container">
+                <div className="showblogs w-full">
                     {
                         blogs && blogs.length && blogs.map((blog: any) => {
                             return (
@@ -60,7 +73,7 @@ function Blogs(props: any) {
                         })
                     }
                 </div>
-                <div className="w-full">
+                <div className="w-1/3">
                     <div className="bg-background-1 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -79,8 +92,19 @@ function Blogs(props: any) {
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Article
                             </label>
-                            <textarea onChange={(e) => setArticle(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" />
+                            <input onChange={(e)=>{
+                                if(e.target.files?.length){
+                                    processArticle(e.target.files[0])
+                                }
+                            }}  accept=".md"className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="article" type="file"/>
                             <p className="text-red-500 text-xs italic">Enter description</p>
+                        </div>
+                        <div className="mb-6">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                Thumbnail url
+                            </label>
+                            <input onChange={(e) => setThumbnail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" />
+                            <p className="text-red-500 text-xs italic">Enter Url of royaltee free image</p>
                         </div>
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-bold mb-2">

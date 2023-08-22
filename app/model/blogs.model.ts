@@ -16,6 +16,9 @@ const blogsSchema = new mongoose.Schema({
     tags: {
         type:[String]
     },
+    thumbnail:{
+        type:String
+    },
     text: {
         type: String,
         default: '',

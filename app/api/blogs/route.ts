@@ -20,12 +20,17 @@ export async function POST(request:NextRequest){
     let email:any = await dat.get('email');
     let article:any = await dat.get('article');
     let tags:any = await dat.get('tags');
+    let tagArray = tags.split(',');
+    let thumbnail:any = await dat.get('thumbnail');
     try{
         const blog = new Blogs({
             username:username,
             email:email,
             text:article,
-            isVerfied:false
+            isVerfied:false,
+            submittedDate: new Date().toString(),
+            thumbnail:thumbnail,
+            tags:tagArray
         });
         let resp = await blog.save()
         if(resp){
