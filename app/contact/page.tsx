@@ -36,6 +36,10 @@ function Contacts() {
             setType('success')
             setMessage('Successfully submitted your data')
             showAlert(true)
+            setEmail('')
+            setDescription('')
+            setName('')
+            setResume('')
         }
     }
     return (
@@ -55,20 +59,20 @@ function Contacts() {
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Name
                             </label>
-                            <input onChange={(e)=>setName(e.target.value)}className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John"/>
+                            <input value={name} onChange={(e)=>setName(e.target.value)}className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John"/>
                         </div>
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Email
                             </label>
-                            <input onChange={(e)=>setEmail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com"/>
+                            <input value={email} onChange={(e)=>setEmail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com"/>
                                 <p className="text-red-500 text-xs italic">Please enter email.</p>
                         </div>
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Message
                             </label>
-                            <textarea onChange={(e)=>setDescription(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"/>
+                            <textarea value={description} onChange={(e)=>setDescription(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"/>
                                 <p className="text-red-500 text-xs italic">Enter description</p>
                         </div>
                         <div className="mb-6">

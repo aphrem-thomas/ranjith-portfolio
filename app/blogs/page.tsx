@@ -43,6 +43,11 @@ function Blogs(props: any) {
             mode: "no-cors",
         })
         if (resp.ok) {
+            setName('')
+            setEmail('')
+            setArticle('')
+            setTags('')
+            setThumbnail('')
             setType('success')
             setMessage('Successfully submitted your data')
             showAlert(true)
@@ -79,13 +84,13 @@ function Blogs(props: any) {
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Name
                             </label>
-                            <input onChange={(e) => setName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John" />
+                            <input value={name} onChange={(e) => setName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John" />
                         </div>
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Email
                             </label>
-                            <input onChange={(e) => setEmail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com" />
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com" />
                             <p className="text-red-500 text-xs italic">Please enter email.</p>
                         </div>
                         <div className="mb-6">
@@ -103,14 +108,14 @@ function Blogs(props: any) {
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Thumbnail url
                             </label>
-                            <input onChange={(e) => setThumbnail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" />
+                            <input value={thumbnail} onChange={(e) => setThumbnail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" />
                             <p className="text-red-500 text-xs italic">Enter Url of royaltee free image</p>
                         </div>
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Tags
                             </label>
-                            <input onChange={(e) => setTags(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com" />
+                            <input value={tags} onChange={(e) => setTags(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com" />
                             <p className="text-red-500 text-xs italic">Please enter email.</p>
                         </div>
                         <div className="flex items-center justify-between">
