@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(){
     connect()
     try{
-        let blogs = await Blogs.find({});
+        let blogs = await Blogs.find({},'username email isVerfied tags');
         console.log("blll",blogs)
         return NextResponse.json({blogs},{status:200})
     }catch(e:any){
