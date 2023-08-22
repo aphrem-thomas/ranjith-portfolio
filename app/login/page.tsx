@@ -11,12 +11,10 @@ function Login(){
     const [alert, showAlert] = useState(false)
     
     async function handleSubmit(){
-        console.log("in submit", alert)
         if(username==='' || password ===''){
             setType('error')
             setMessage('Please fill all fields')
             showAlert(true)
-            console.log("ale ale", alert)
             return
         }
         const formData = new FormData()
@@ -28,7 +26,6 @@ function Login(){
             cache: "no-cache",
             mode: "no-cors",
         })
-        console.log("response",resp)
         if(resp.status==200){
             setType('success')
             setMessage('Successfully submitted your data')

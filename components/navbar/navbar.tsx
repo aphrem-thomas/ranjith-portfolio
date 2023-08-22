@@ -15,7 +15,6 @@ const anton = Anton({
 function Navbar () {
     {/* Get the current route */}
     const currentRoute = usePathname();
-    console.log("currentRoute",currentRoute);
     // const [activeTab, setActiveTab] = useState('home')
     return(
         <nav className="flex flex-row container text-2xl h-10 items-center mt-7 mb-7">

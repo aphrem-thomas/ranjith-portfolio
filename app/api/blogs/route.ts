@@ -7,7 +7,6 @@ export async function GET(){
     connect()
     try{
         let blogs = await Blogs.find({},'username email isVerfied tags');
-        console.log("blll",blogs)
         return NextResponse.json({blogs},{status:200})
     }catch(e:any){
         return NextResponse.json({message:e.message},{status:500})
@@ -30,7 +29,6 @@ export async function POST(request:NextRequest){
         });
         let resp = await blog.save()
         if(resp){
-            console.log("resp after saving blog", resp)
             return NextResponse.json({ message: 'success' }, { status: 200 });
         }
     }catch(e:any){

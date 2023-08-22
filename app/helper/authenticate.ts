@@ -8,7 +8,6 @@ export async function authenticate(request:NextRequest){
     let token=request.cookies.get('token')?.value;
     if(token){
       let udt = await jwt.verify(token,process.env.SIGN_HASH!)
-      console.log(typeof(udt))
       if(udt){
         return true
       }else{

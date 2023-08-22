@@ -26,6 +26,5 @@ export async function POST(request:NextRequest,response:Response){
             }
         ]
       });
-    console.log("after sending email", info)
     return new Response('done',{status:200})
 }

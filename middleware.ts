@@ -10,7 +10,6 @@ export async function middleware(request: NextRequest) {
     if(token){
       try {
         let udt = await jose.jwtVerify(token, new TextEncoder().encode(process.env.SIGN_HASH!))
-        console.log("udt", udt)
         if (udt) {
           return NextResponse.redirect(new URL('/', request.url))
         }
