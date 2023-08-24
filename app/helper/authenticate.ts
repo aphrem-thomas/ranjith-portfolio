@@ -13,6 +13,8 @@ export async function authenticate(request:NextRequest){
       }else{
         return false
       }
+    }else {
+        return false
     }
     } catch(err) {
         return false
