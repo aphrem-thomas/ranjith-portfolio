@@ -1,6 +1,7 @@
 'use client'
 import AlertMessage from "@/components/alertMessage/AlertMessage"
 import BlogsCard from "@/components/BlogsCard/BlogsCard"
+import { clearPreviewData } from "next/dist/server/api-utils"
 import { useEffect, useState } from "react"
 
 function Blogs(props: any) {
@@ -14,6 +15,9 @@ function Blogs(props: any) {
     const [alert, showAlert] = useState(false)
     const [blogs, setBlogs] = useState([])
     const [thumbnail, setThumbnail] = useState('');
+    const [showModal, showModalSet] = useState(false);
+    const [heading, setHeading] = useState('');
+    const [subHeading, setSubheading] = useState('');
 
     useEffect(()=>{
         fetch('/api/blogs').then((res)=>{
@@ -23,8 +27,24 @@ function Blogs(props: any) {
         })
 
     },[])
+    function clearData(){
+        setName('')
+        setEmail('')
+        setArticle('')
+        setTags('')
+        setThumbnail('')
+        setHeading('')
+        setSubheading('')
+    }
     async function handleSubmit() {
-        if (name === '' || email === '' || article === '' || tags === '') {
+        console.log("name", name)
+        console.log('email', email)
+        console.log('article', article)
+        console.log('tags', tags)
+        console.log('thumbnail', thumbnail)
+        console.log('heading', heading)
+        console.log('subheading', subHeading)
+        if (name === '' || email === '' || article === '' || tags === ''|| heading===''||subHeading==='') {
             setType('error')
             setMessage('Please fill all fields')
             showAlert(true)
@@ -36,6 +56,8 @@ function Blogs(props: any) {
         formData.append('article', article)
         formData.append('tags', tags)
         formData.append('thumbnail', thumbnail)
+        formData.append('heading', heading)
+        formData.append('subheading', subHeading)
         let resp = await fetch('api/blogs', {
             method: 'POST',
             body: formData,
@@ -43,11 +65,8 @@ function Blogs(props: any) {
             mode: "no-cors",
         })
         if (resp.ok) {
-            setName('')
-            setEmail('')
-            setArticle('')
-            setTags('')
-            setThumbnail('')
+            clearData()
+            showModalSet(false)
             setType('success')
             setMessage('Successfully submitted your data')
             showAlert(true)
@@ -68,7 +87,10 @@ function Blogs(props: any) {
     }
     return (
         <>
-            <div className="blogmain ml-20 flex mt-20 container">
+            <div className="mt-4 container addBlogButton flex justify-end">
+                <button  onClick={()=>{showModalSet(true)}} className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit article</button>
+            </div>
+            <div className="blogmain relative ml-20 flex mt-20 container">
                 <div className="showblogs w-full">
                     {
                         blogs && blogs.length && blogs.map((blog: any) => {
@@ -78,22 +100,36 @@ function Blogs(props: any) {
                         })
                     }
                 </div>
-                <div className="w-1/3">
-                    <div className="bg-background-1 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2">
-                                Name
-                            </label>
-                            <input value={name} onChange={(e) => setName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John" />
+                    {showModal && <div className="formModal bg-white/60 fixed left-0 top-0 justify-center w-full h-full flex items-center">
+                    <div className="bg-background-1 w-1/3 p-10 rounded shadow">
+                        <div className="nameAndEmail flex justify-between">
+                            <div className="mb-2 w-2/5">
+                                <label className="block text-gray-700 text-sm font-bold">
+                                    Name
+                                </label>
+                                <input value={name} onChange={(e) => setName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John" />
+                            </div>
+                            <div className="mb-2 w-2/5">
+                                <label className="block text-gray-700 text-sm font-bold">
+                                    Email
+                                </label>
+                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-2 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com" />
+                                <p className="text-red-500 text-xs italic">Please enter email.</p>
+                            </div>
                         </div>
-                        <div className="mb-6">
+                        <div className="mb-2">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
-                                Email
+                                Heading
                             </label>
-                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com" />
-                            <p className="text-red-500 text-xs italic">Please enter email.</p>
+                            <input value={heading} onChange={(e) => setHeading(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-2 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com" />
                         </div>
-                        <div className="mb-6">
+                        <div className="mb-2">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                Sub Heading
+                            </label>
+                            <input value={subHeading} onChange={(e) => setSubheading(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-2 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com" />
+                        </div>
+                        <div className="mb-2">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Article
                             </label>
@@ -102,29 +138,31 @@ function Blogs(props: any) {
                                     processArticle(e.target.files[0])
                                 }
                             }}  accept=".md"className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="article" type="file"/>
-                            <p className="text-red-500 text-xs italic">Enter description</p>
                         </div>
-                        <div className="mb-6">
+                        <div className="mb-2">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Thumbnail url
                             </label>
-                            <input value={thumbnail} onChange={(e) => setThumbnail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" />
+                            <input value={thumbnail} onChange={(e) => setThumbnail(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" />
                             <p className="text-red-500 text-xs italic">Enter Url of royaltee free image</p>
                         </div>
-                        <div className="mb-6">
+                        <div className="mb-2">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Tags
                             </label>
-                            <input value={tags} onChange={(e) => setTags(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com" />
+                            <input value={tags} onChange={(e) => setTags(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="john@gmail.com" />
                             <p className="text-red-500 text-xs italic">Please enter email.</p>
                         </div>
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center">
                             <button onClick={handleSubmit} className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                                 Submit
                             </button>
+                            <button onClick={()=>{showModalSet(false);clearData()}} className="font-bold text-text py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                Cancel
+                            </button>
                         </div>
                     </div>
-                </div>
+                    </div>}
             </div>
             {alert && <AlertMessage message={message} type={type} closeAlert={() => showAlert(false)} />}
         </>

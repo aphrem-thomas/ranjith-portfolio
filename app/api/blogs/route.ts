@@ -1,12 +1,19 @@
 
 import { connect } from "@/app/config/db.config";
+import { authenticate } from "@/app/helper/authenticate";
 import Blogs from "@/app/model/blogs.model";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(){
+export async function GET(request:NextRequest){
     connect()
     try{
-        let blogs = await Blogs.find({},'username email isVerfied tags');
+        const isAdmin = await authenticate(request)
+        let blogs;
+        if(isAdmin){
+            blogs = await Blogs.find({},'_id username email isVerfied tags thumbnail submittedDate');
+        }else{
+            blogs = await Blogs.find({},'_id username email tags thumbnail submittedDate');
+        }
         return NextResponse.json({blogs},{status:200})
     }catch(e:any){
         return NextResponse.json({message:e.message},{status:500})
@@ -22,6 +29,8 @@ export async function POST(request:NextRequest){
     let tags:any = await dat.get('tags');
     let tagArray = tags.split(',');
     let thumbnail:any = await dat.get('thumbnail');
+    let heading:any = await dat.get('heading');
+    let subheading:any = await dat.get('subheading');
     try{
         const blog = new Blogs({
             username:username,
@@ -30,7 +39,9 @@ export async function POST(request:NextRequest){
             isVerfied:false,
             submittedDate: new Date().toString(),
             thumbnail:thumbnail,
-            tags:tagArray
+            tags:tagArray,
+            heading:heading,
+            subheading:subheading
         });
         let resp = await blog.save()
         if(resp){

@@ -23,6 +23,14 @@ const blogsSchema = new mongoose.Schema({
         type: String,
         default: '',
     },
+    heading: {
+        type: String,
+        default: '',
+    },
+    subheading: {
+        type: String,
+        default: '',
+    },
     submittedDate: Date,
 })
 
