@@ -10,9 +10,9 @@ export async function GET(request:NextRequest){
         const isAdmin = await authenticate(request)
         let blogs;
         if(isAdmin){
-            blogs = await Blogs.find({},'_id username email isVerfied tags thumbnail submittedDate');
+            blogs = await Blogs.find({},'_id username email isVerfied tags thumbnail submittedDate heading subheading');
         }else{
-            blogs = await Blogs.find({},'_id username email tags thumbnail submittedDate');
+            blogs = await Blogs.find({},'_id username email tags thumbnail submittedDate heading subheading');
         }
         return NextResponse.json({blogs},{status:200})
     }catch(e:any){

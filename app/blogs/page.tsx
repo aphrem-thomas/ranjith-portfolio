@@ -37,13 +37,6 @@ function Blogs(props: any) {
         setSubheading('')
     }
     async function handleSubmit() {
-        console.log("name", name)
-        console.log('email', email)
-        console.log('article', article)
-        console.log('tags', tags)
-        console.log('thumbnail', thumbnail)
-        console.log('heading', heading)
-        console.log('subheading', subHeading)
         if (name === '' || email === '' || article === '' || tags === ''|| heading===''||subHeading==='') {
             setType('error')
             setMessage('Please fill all fields')
