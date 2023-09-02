@@ -25,6 +25,9 @@ module.exports = {
       'primary': '#1392cb',
       'secondary': '#b2bfeb',
       'accent': '#4e2ca5',
+      'accent-comp':'#A69C2D',
+      'accent-comp-dark':'#595306',
+      'accent-dark':'#240F59',
       'hazard':'#d41d6d',
       'white':'#fff'
     }

@@ -5,7 +5,7 @@ import { clearPreviewData } from "next/dist/server/api-utils"
 import { useEffect, useState } from "react"
 
 function Blogs(props: any) {
-   
+
     const [message, setMessage] = useState('')
     const [tags, setTags] = useState('')
     const [name, setName] = useState('')
@@ -19,15 +19,15 @@ function Blogs(props: any) {
     const [heading, setHeading] = useState('');
     const [subHeading, setSubheading] = useState('');
 
-    useEffect(()=>{
-        fetch('/api/blogs').then((res)=>{
-            res.json().then(data=>{
+    useEffect(() => {
+        fetch('/api/blogs').then((res) => {
+            res.json().then(data => {
                 setBlogs(data.blogs)
             })
         })
 
-    },[])
-    function clearData(){
+    }, [])
+    function clearData() {
         setName('')
         setEmail('')
         setArticle('')
@@ -37,7 +37,7 @@ function Blogs(props: any) {
         setSubheading('')
     }
     async function handleSubmit() {
-        if (name === '' || email === '' || article === '' || tags === ''|| heading===''||subHeading==='') {
+        if (name === '' || email === '' || article === '' || tags === '' || heading === '' || subHeading === '') {
             setType('error')
             setMessage('Please fill all fields')
             showAlert(true)
@@ -66,13 +66,17 @@ function Blogs(props: any) {
         }
     }
 
-    function processArticle(mdfile:any){
+    function clickBlog(id: string) {
+        console.log("clicked ", id)
+    }
+
+    function processArticle(mdfile: any) {
         let fr = new FileReader()
         fr.readAsText(mdfile);
-        fr.onload = ()=>{
+        fr.onload = () => {
             setArticle(fr.result)
         }
-        fr.onerror = ()=>{
+        fr.onerror = () => {
             setType('error')
             setMessage('error in reading file')
             showAlert(true)
@@ -80,20 +84,35 @@ function Blogs(props: any) {
     }
     return (
         <>
-            <div className="mt-4 container addBlogButton flex justify-end">
-                <button  onClick={()=>{showModalSet(true)}} className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit article</button>
+            <div className="headBanner w-full bg-accent h-72 flex flex-col items-center">
+                <div className="headBannerWrapper container flex justify-between ml-36">
+                    <div className="writeHeader text-9xl text-accent-comp h-72">Write</div>
+                    <img className="w-96" src='/paper.svg'/>
+                </div>
             </div>
+            <div className="sticky w-full top-0 left-0 bg-accent z-10 flex items-center justify-center h-20 addBlogButton">
+                <div className="container ml-36">
+                    <button onClick={() => { showModalSet(true) }} className="bg-accent-comp w-40 text-xl text-accent font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit article</button>
+                </div>
+            </div>
+
             <div className="blogmain relative ml-20 flex mt-20 container">
-                <div className="showblogs w-full">
+                <div className="showblogs w-2/3 flex flex-col">
                     {
                         blogs && blogs.length && blogs.map((blog: any) => {
                             return (
-                                <BlogsCard blog={blog} />
+                                <BlogsCard blog={blog} selectBlog={clickBlog} />
                             )
                         })
                     }
                 </div>
-                    {showModal && <div className="formModal bg-white/60 fixed left-0 top-0 justify-center w-full h-full flex items-center">
+                <div className="tagsSelection sticky top-20 h-96 ml-5 w-1/3">
+                    <div className="tagList bg-background-2 h-full">
+                        <h2 className="text-2xl font-bold">Topics</h2>
+
+                    </div>
+                </div>
+                {showModal && <div className="formModal z-20 bg-white/80 fixed left-0 top-0 justify-center w-full h-full flex items-center">
                     <div className="bg-background-1 w-1/3 p-10 rounded shadow">
                         <div className="nameAndEmail flex justify-between">
                             <div className="mb-2 w-2/5">
@@ -126,11 +145,11 @@ function Blogs(props: any) {
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Article
                             </label>
-                            <input onChange={(e)=>{
-                                if(e.target.files?.length){
+                            <input onChange={(e) => {
+                                if (e.target.files?.length) {
                                     processArticle(e.target.files[0])
                                 }
-                            }}  accept=".md"className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="article" type="file"/>
+                            }} accept=".md" className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="article" type="file" />
                         </div>
                         <div className="mb-2">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -150,12 +169,12 @@ function Blogs(props: any) {
                             <button onClick={handleSubmit} className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                                 Submit
                             </button>
-                            <button onClick={()=>{showModalSet(false);clearData()}} className="font-bold text-text py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            <button onClick={() => { showModalSet(false); clearData() }} className="font-bold text-text py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                                 Cancel
                             </button>
                         </div>
                     </div>
-                    </div>}
+                </div>}
             </div>
             {alert && <AlertMessage message={message} type={type} closeAlert={() => showAlert(false)} />}
         </>
