@@ -1,10 +1,10 @@
 const BlogsCard = (props:any)=>{
     return(
-        <div onClick={()=>props.selectBlog(props.blog._id)}className="blogsCardmain cursor-pointer rounded-md shadow flex h-52 mb-3 w-full bg-secondary/20">
-            <div className="descriptionbox p-3 w-3/4">
+        <div onClick={()=>props.selectBlog(props.blog._id)} className="blogsCardmain border-l-2 h-40 cursor-pointer flex mb-8 w-full">
+            <div className="descriptionbox w-3/4 ml-2">
+                <div className="authorName mt-0">{props.blog.username}</div>
                 <h1 className="header w-full text-3xl font-bold">{props.blog.heading}</h1>
-                <h2 className="subhead mt-3 text-base h-24">{props.blog.subheading}</h2>
-                <div className="authorName mt-2 text-right">{props.blog.username}</div>
+                <h2 className="subhead mt-3 text-base overflow-hidden h-12">{props.blog.subheading}</h2>
                 <div className="meta">
                     
                 </div>
