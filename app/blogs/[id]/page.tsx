@@ -1,13 +1,24 @@
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { Playfair_Display } from 'next/font/google'
 
+const Playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: '400',
+  variable:'--barlow-font'
+})
 async function getBlogData(id:string){
-    const data = await fetch('http://localhost:3000'+`/api/blogs/${id}`)
+    const data = await fetch('http://localhost:3000'+`/api/blogs/${id}`,{ cache: 'no-store' })
     return data;
 }
-function BlogPage({params:{id}}:{params:{id:string}}){
-    const blogData = getBlogData(id)
+async function BlogPage({params:{id}}:{params:{id:string}}){
+    const blogData = await getBlogData(id)
+    const data = await blogData.json()
     return(
-        <div className="BlogpageMain">
-            howdi partner {id}
+        <div className={`BlogpageMain ${Playfair.className} flex justify-center bg-white w-screen`}>
+            <div className="container">
+                <ReactMarkdown children={data.blogs.text} remarkPlugins={[remarkGfm]}/>
+            </div>
         </div>
     )
 }

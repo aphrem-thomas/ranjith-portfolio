@@ -15,9 +15,9 @@ export async function GET(request:NextRequest, {params}:{params:{id:string}}){
         const isAdmin = await authenticate(request)
         let blogs;
         if(isAdmin){
-            blogs = await Blogs.find({},'_id username email isVerfied tags thumbnail text submittedDate heading subheading').sort({'isVerfied':'desc'});
+            blogs = await Blogs.findById(id,'_id username text email tags thumbnail submittedDate heading subheading isVerfied');
         }else{
-            blogs = await Blogs.find({isVerfied:true},'_id username email tags thumbnail submittedDate heading subheading');
+            blogs = await Blogs.findById(id,'_id username text email tags thumbnail submittedDate heading subheading');
         }
         return NextResponse.json({blogs},{status:200})
     }catch(e:any){
