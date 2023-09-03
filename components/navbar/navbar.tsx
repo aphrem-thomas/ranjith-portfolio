@@ -17,7 +17,7 @@ function Navbar () {
     const currentRoute = usePathname();
     // const [activeTab, setActiveTab] = useState('home')
     return(
-        <div className={`navwrapper sticky z-10 top-0 left-0 w-screen flex flex-col items-center ${currentRoute==='/blogs'?'bg-accent text-background':''}`}>
+        <div className={`navwrapper sticky z-10 top-0 left-0 w-screen flex flex-col items-center ${currentRoute.includes('/blogs')?'bg-accent text-background':''}`}>
         <nav className="flex flex-row container text-2xl h-10 items-center mt-7 mb-7">
             <div className={`tradeMark ml-20 w-52 ${anton.className}`}>Ranjith Mathew</div>
             <div className="navigation underline-offset-8 decoration-primary flex flex-row justify-end container text-2xl">
