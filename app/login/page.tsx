@@ -2,6 +2,7 @@
 
 import AlertMessage from "@/components/alertMessage/AlertMessage"
 import { useState } from "react"
+import { useRouter } from 'next/navigation'
 
 function Login(){
     const [message, setMessage] = useState('')
@@ -9,6 +10,7 @@ function Login(){
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [alert, showAlert] = useState(false)
+    const router = useRouter();
     
     async function handleSubmit(){
         if(username==='' || password ===''){
@@ -30,6 +32,7 @@ function Login(){
             setType('success')
             setMessage('Successfully submitted your data')
             showAlert(true)
+            router.push('/blogs')
         }
     }
     return(
