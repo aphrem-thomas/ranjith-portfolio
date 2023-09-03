@@ -3,6 +3,7 @@ import AlertMessage from "@/components/alertMessage/AlertMessage"
 import BlogsCard from "@/components/BlogsCard/BlogsCard"
 import { clearPreviewData } from "next/dist/server/api-utils"
 import { useEffect, useState } from "react"
+import { useRouter } from 'next/navigation'
 
 function Blogs(props: any) {
 
@@ -18,6 +19,7 @@ function Blogs(props: any) {
     const [showModal, showModalSet] = useState(false);
     const [heading, setHeading] = useState('');
     const [subHeading, setSubheading] = useState('');
+    const router = useRouter();
 
     useEffect(() => {
         fetch('/api/blogs').then((res) => {
@@ -67,7 +69,7 @@ function Blogs(props: any) {
     }
 
     function clickBlog(id: string) {
-        console.log("clicked ", id)
+       router.push(`/blogs/${id}`)
     }
 
     function processArticle(mdfile: any) {

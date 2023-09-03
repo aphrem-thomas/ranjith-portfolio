@@ -4,21 +4,47 @@ import Blogs from "@/app/model/blogs.model";
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request:NextApiRequest, {params}:{params:{id:string}}){
-    // connect()
+export async function GET(request:NextRequest, {params}:{params:{id:string}}){
+    connect()
     const {id} = params
-    return NextResponse.json({"id":id},{status:200})
-    // try{
-    //     console.log("id kitti", id)
-    //     // const isAdmin = await authenticate(request)
-    //     // let blogs;
-    //     // if(isAdmin){
-    //     //     blogs = await Blogs.find({},'_id username email isVerfied tags thumbnail submittedDate heading subheading');
-    //     // }else{
-    //     //     blogs = await Blogs.find({},'_id username email tags thumbnail submittedDate heading subheading');
-    //     // }
-    //     // return NextResponse.json({blogs},{status:200})
-    // }catch(e:any){
-    //     return NextResponse.json({message:e.message},{status:500})
-    // }
+    const {searchParams} = new URL(request.url);
+    const approve = searchParams.get('approve');
+    console.log('approve',approve)
+    try{
+        console.log("id kitti", id)
+        const isAdmin = await authenticate(request)
+        let blogs;
+        if(isAdmin){
+            blogs = await Blogs.find({},'_id username email isVerfied tags thumbnail text submittedDate heading subheading').sort({'isVerfied':'desc'});
+        }else{
+            blogs = await Blogs.find({isVerfied:true},'_id username email tags thumbnail submittedDate heading subheading');
+        }
+        return NextResponse.json({blogs},{status:200})
+    }catch(e:any){
+        return NextResponse.json({message:e.message},{status:500})
+    }
+}
+
+export async function POST(request:NextRequest, {params}:{params:{id:string}}){
+    connect()
+    const {id} = params
+    const {searchParams} = new URL(request.url);
+    const approve = searchParams.get('approve');
+    console.log('approve',approve)
+    try{
+        const isAdmin = await authenticate(request)
+        let blogs;
+        if(isAdmin){
+            try{
+                blogs = await Blogs.findOneAndUpdate({_id:id},{isVerfied:true},{new:true});
+            }catch(e:any){
+                return NextResponse.json({message:e.message},{status:500})
+            }
+        }else{
+            return NextResponse.json({message:'unauthoriesd'},{status:400})
+        }
+        return NextResponse.json({blogs},{status:200})
+    }catch(e:any){
+        return NextResponse.json({message:e.message},{status:500})
+    }
 }
