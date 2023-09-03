@@ -23,3 +23,66 @@ body {
   display:flex; flex-direction:column; align-items: center;
   font-family: 'Barlow Condensed';
 }
+
+  .BlogpageMain ul,
+  .BlogpageMain ol {
+    list-style: revert;
+    margin: revert;
+    padding: revert;
+  }
+  .BlogpageMain h1, 
+  .BlogpageMain h2, 
+  .BlogpageMain h3,
+  .BlogpageMain h4,
+  .BlogpageMain h5,
+  .BlogpageMain h6 
+  {
+    font-size: revert;
+    font-weight: revert;
+  }
+
+  .BlogpageMain h1,
+  .BlogpageMain h3,
+  .BlogpageMain h2,
+  .BlogpageMain h4,
+  .BlogpageMain h5,
+  .BlogpageMain h6 {
+    font-size: revert;
+    font-weight: revert;
+  }
+
+.BlogpageMain img,
+.BlogpageMain svg,
+.BlogpageMain video,
+.BlogpageMain canvas,
+.BlogpageMain audio,
+.BlogpageMain iframe,
+.BlogpageMain embed,
+.BlogpageMain object {
+  display: revert;
+  vertical-align: revert;
+}
+
+.BlogpageMain blockquote,
+.BlogpageMain dl,
+.BlogpageMain dd,
+.BlogpageMain h1,
+.BlogpageMain h2,
+.BlogpageMain h3,
+.BlogpageMain h4,
+.BlogpageMain h5,
+.BlogpageMain h6,
+.BlogpageMain hr,
+.BlogpageMain figure,
+.BlogpageMain p,
+.BlogpageMain pre {
+  margin: revert;
+}
+
+.BlogpageMain *,
+.BlogpageMain ::before,
+.BlogpageMain ::after {
+  border-width: revert;
+  border-style: revert;
+  border-color: revert;
+} 
