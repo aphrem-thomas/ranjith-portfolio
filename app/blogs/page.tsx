@@ -4,6 +4,7 @@ import BlogsCard from "@/components/BlogsCard/BlogsCard"
 import { clearPreviewData } from "next/dist/server/api-utils"
 import { useEffect, useState } from "react"
 import { useRouter } from 'next/navigation'
+import { data } from "autoprefixer"
 
 function Blogs(props: any) {
 
@@ -19,6 +20,7 @@ function Blogs(props: any) {
     const [showModal, showModalSet] = useState(false);
     const [heading, setHeading] = useState('');
     const [subHeading, setSubheading] = useState('');
+    const [tagList, setTagList] = useState(['']);
     const router = useRouter();
 
     useEffect(() => {
@@ -29,6 +31,20 @@ function Blogs(props: any) {
         })
 
     }, [])
+
+    useEffect(()=>{
+        getAllTags()
+    },[blogs])
+
+    function getAllTags(){
+        let tags: string[] = [];
+        let outTags = []
+        blogs.forEach((blog:any)=>{
+            tags.push(...blog.tags)
+        })
+        outTags = [...new Set(tags)]
+        setTagList([...new Set(tags)]);
+    }
     function clearData() {
         setName('')
         setEmail('')
@@ -110,9 +126,15 @@ function Blogs(props: any) {
                     }
                 </div>
                 <div className="tagsSelection sticky top-48 h-96 ml-5 w-1/3">
-                    <div className="tagList bg-white-accent h-full">
+                    <div className="tagList bg-white-accent p-2 h-full">
                         <h2 className="text-2xl font-bold">Topics</h2>
-
+                        <div className="tagListDisplay mt-4">
+                        {tagList.map((tag)=>{
+                            return(
+                                <span className="tags text-center h-8 mb-2 inline-flex items-center bg-background-1 ml-2 p-1 rounded-xl pl-5 pr-5">{tag}</span>
+                            )
+                        })}
+                        </div>
                     </div>
                 </div>
                 {showModal && <div className="formModal z-20 bg-white/80 fixed left-0 top-0 justify-center w-full h-full flex items-center">

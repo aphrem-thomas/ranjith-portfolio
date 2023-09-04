@@ -12,7 +12,7 @@ export async function GET(request:NextRequest){
         if(isAdmin){
             blogs = await Blogs.find({},'_id username email isVerfied tags thumbnail submittedDate heading subheading').sort({'isVerfied':1});
         }else{
-            blogs = await Blogs.find({},'_id username email tags thumbnail submittedDate heading subheading');
+            blogs = await Blogs.find({isVerfied:true},'_id username email tags thumbnail submittedDate heading subheading');
         }
         return NextResponse.json({blogs},{status:200})
     }catch(e:any){
