@@ -30,7 +30,6 @@ export async function POST(request:NextRequest, {params}:{params:{id:string}}){
     const {id} = params
     const {searchParams} = new URL(request.url);
     const approve = searchParams.get('approve');
-    console.log('approve',approve)
     try{
         const isAdmin = await authenticate(request)
         let blogs;

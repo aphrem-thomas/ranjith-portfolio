@@ -8,7 +8,7 @@ const Playfair = Playfair_Display({
   variable:'--barlow-font'
 })
 async function getBlogData(id:string){
-    const data = await fetch('http://localhost:3000'+`/api/blogs/${id}`,{ cache: 'no-store' })
+    const data = await fetch(process.env.NEXT_PUBLIC_URL+`/api/blogs/${id}`,{ cache: 'no-store' })
     return data;
 }
 async function BlogPage({params:{id}}:{params:{id:string}}){
