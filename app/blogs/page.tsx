@@ -131,7 +131,7 @@ function Blogs(props: any) {
                         <div className="tagListDisplay mt-4">
                         {tagList.map((tag)=>{
                             return(
-                                <span className="tags text-center h-8 mb-2 inline-flex items-center bg-background-1 ml-2 p-1 rounded-xl pl-5 pr-5">{tag}</span>
+                                <span key={tag} className="tags text-center h-8 mb-2 inline-flex items-center bg-background-1 ml-2 p-1 rounded-xl pl-5 pr-5">{tag}</span>
                             )
                         })}
                         </div>

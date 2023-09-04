@@ -15,9 +15,9 @@ async function BlogPage({params:{id}}:{params:{id:string}}){
     const blogData = await getBlogData(id)
     const data = await blogData.json()
     return(
-        <div className={`BlogpageMain ${Playfair.className} flex justify-center bg-white w-screen`}>
+        <div id="BlogpageMainContainer" className={`BlogpageMain ${Playfair.className} flex justify-center bg-white w-screen`}>
             <div className="container">
-                <ReactMarkdown children={data.blogs.text} remarkPlugins={[remarkGfm]}/>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{data.blogs.text}</ReactMarkdown>
             </div>
         </div>
     )
