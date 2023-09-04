@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
       try {
         let udt = await jose.jwtVerify(token, new TextEncoder().encode(process.env.SIGN_HASH!))
         if (udt) {
-          return NextResponse.redirect(new URL('/', request.url))
+          return NextResponse.redirect(new URL('/logout', request.url))
         }
       } catch (e) {
         return
