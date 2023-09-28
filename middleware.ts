@@ -8,18 +8,28 @@ import * as jose from 'jose'
 export async function middleware(request: NextRequest) {
     let token=request.cookies.get('token')?.value;
     if(token){
-      try {
-        let udt = await jose.jwtVerify(token, new TextEncoder().encode(process.env.SIGN_HASH!))
-        if (udt) {
-          return NextResponse.redirect(new URL('/logout', request.url))
+      if (request.nextUrl.pathname.startsWith('/login')) {
+        try {
+          let udt = await jose.jwtVerify(token, new TextEncoder().encode(process.env.SIGN_HASH!))
+          if (udt) {
+            return NextResponse.redirect(new URL('/logout', request.url))
+          }
+        } catch (e) {
+          return
         }
-      } catch (e) {
-        return
+      } else if(request.nextUrl.pathname.startsWith('/blogs/') && !request.nextUrl.pathname.endsWith('admin')){
+        try{
+          let udt = await jose.jwtVerify(token, new TextEncoder().encode(process.env.SIGN_HASH!))
+          if (udt) {
+          return NextResponse.redirect(new URL(`${request.nextUrl.pathname}/admin`, request.url))
+        }} catch (e) {
+          return
+        }
       }
     }
     
 }
  
 export const config = {
-  matcher: '/login/:path*',
+  matcher: ['/login/:path*','/blogs/:path*'],
 }

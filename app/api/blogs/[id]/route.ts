@@ -9,10 +9,9 @@ export async function GET(request:NextRequest, {params}:{params:{id:string}}){
     const {id} = params
     const {searchParams} = new URL(request.url);
     const approve = searchParams.get('approve');
-    console.log('approve',approve)
     try{
-        console.log("id kitti", id)
         const isAdmin = await authenticate(request)
+        console.log('isAdmin',isAdmin)
         let blogs;
         if(isAdmin){
             blogs = await Blogs.findById(id,'_id username text email tags thumbnail submittedDate heading subheading isVerfied');
