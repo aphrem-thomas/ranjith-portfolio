@@ -2,7 +2,6 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Playfair_Display } from 'next/font/google'
-import { useRouter } from "next/navigation";
 
 const Playfair = Playfair_Display({
   subsets: ['latin'],
@@ -17,7 +16,6 @@ async function getBlogData(id:string){
 
 
 async function BlogPage({params:{id}}:{params:{id:string}}){
-    const router = useRouter();
     const blogData = await getBlogData(id)
     const data = await blogData.json()
 
