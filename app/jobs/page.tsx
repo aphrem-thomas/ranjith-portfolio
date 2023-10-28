@@ -20,7 +20,7 @@ async function Jobs() {
     ]
     const dummyFun =()=>console.log("dummy clicked")
   return (
-    <div className="bg-bg-jobs w-screen min-h-screen flex flex-col items-center shadow-md">
+    <div className="bg-bg-jobs w-screen min-h-screen flex flex-col items-center">
       <h1>Jobs</h1>
       <div className="h-10 container">
       <div className="jobListings">
