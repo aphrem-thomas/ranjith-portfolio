@@ -19,6 +19,7 @@
     "eslint-config-next": "13.4.12",
     "jose": "^4.14.4",
     "jsonwebtoken": "^9.0.1",
+    "link-preview-js": "^3.0.5",
     "mongoose": "^7.4.3",
     "next": "13.4.12",
     "nodemailer": "^6.9.4",

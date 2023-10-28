@@ -30,7 +30,8 @@ module.exports = {
       'accent-dark':'#240F59',
       'hazard':'#d41d6d',
       'white':'#fff',
-      'white-accent':'#f7f7f7'
+      'white-accent':'#f7f7f7',
+      'bg-jobs':'#f7fafc'
     }
   },
   plugins: [],
