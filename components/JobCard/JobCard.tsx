@@ -1,6 +1,6 @@
 const JobCard = (props:any)=>{
     return(
-        <div className={`jobsCardmain h-40 cursor-pointer flex mb-8 w-full shadow-md ${props.bgColor} p-2`}>
+        <div className={`jobsCardmain h-40 cursor-pointer flex w-full shadow-md ${props.bgColor} p-2 mb-4`}>
             <div className="thumbnailImage w-36 ">
                 <img className="h-full w-full object-fit"src={props.thumbnail}/>
             </div>
