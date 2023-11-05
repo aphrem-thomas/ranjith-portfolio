@@ -7,21 +7,22 @@ const jobsSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        required: [true, "Please provide a email"],
+        required: [true, "Please provide a role"],
     },
     company: {
-        type: Boolean,
-        default: false,
+        type: String,
+        required: [true, "Please company name"],
     },
     location: {
-        type:[String]
+        type:String,
     },
     department:{
-        type:String
+        type:String,
+        required: [true, "Please company department"],
     },
     url: {
         type: String,
-        default: '',
+        required: [true, "Please job url"],
     },
     submittedDate: Date,
 })
