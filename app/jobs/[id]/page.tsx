@@ -19,11 +19,11 @@ async function Jobs({ params }: { params: { id: string } }) {
   const jobList = data.jobs
   const count = data.totalCount
 
-  const getLinks = ()=>{
+  const getLinks = (id:string)=>{
     let links=[];
     for(let i=1; i<=(Math.ceil(count/10)); i++){
        links.push(<Link
-        className="w-4 h-6 ml-2 bg-background-3 inline-block"
+        className={`w-4 h-6 ml-2 ${parseInt(id)===i?'bg-background-4':'bg-background-1'} inline-block align-middle text-center`}
         key={i}
         href={`${process.env.NEXT_PUBLIC_URL}/jobs/${i}`}>{i}</Link>)
     }
@@ -53,9 +53,9 @@ async function Jobs({ params }: { params: { id: string } }) {
         </div>
         <div className="sidebar w-2/6"></div>
       </div>
-      <div className="footerNav container mt-10 w-full flex items-center content-center">
+      <div className="footerNav container mt-10 h-20 w-full flex items-center justify-center">
         <div className="pagination">
-          {getLinks()}
+          {getLinks(params.id)}
         </div>
       </div>
     </div>
