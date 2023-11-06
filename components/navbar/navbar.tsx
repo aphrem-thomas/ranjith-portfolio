@@ -27,7 +27,7 @@ function Navbar () {
                 <Link className={`home ${currentRoute==='/contact'?'underline':''} w-10 ml-10`} href="/contact">Contact</Link>
                 {/* <Link className={`home ${currentRoute==='/works'?'underline':''} w-10 ml-10`} href="/works">Works</Link> */}
                 <Link className={`home ${currentRoute.includes('/blogs')?'underline':''} w-10 ml-10`} href="/blogs">Blogs</Link>
-                <Link className={`home ${currentRoute==='/jobs'?'underline':''} w-10 ml-10`} href="/jobs">Jobs</Link>
+                <Link className={`home ${currentRoute.includes('/jobs')?'underline':''} w-10 ml-10`} href="/jobs/1">Jobs</Link>
             </div>
             
         </nav>

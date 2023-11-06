@@ -6,6 +6,7 @@ import * as jose from 'jose'
  
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
+  console.log("path", request.nextUrl.pathname);
     let token=request.cookies.get('token')?.value;
     if(token){
       if (request.nextUrl.pathname.startsWith('/login')) {
@@ -25,11 +26,19 @@ export async function middleware(request: NextRequest) {
         }} catch (e) {
           return
         }
+      } else if(request.nextUrl.pathname ==='/jobs-admin'){
+        try{
+          let udt = await jose.jwtVerify(token, new TextEncoder().encode(process.env.SIGN_HASH!))
+          if (!udt) {
+          return NextResponse.redirect(new URL(`${process.env.NEXT_PUBLIC_URL}/jobs`, request.url))
+        }} catch (e) {
+          return
+        }
       }
     }
     
 }
  
 export const config = {
-  matcher: ['/login/:path*','/blogs/:path*'],
+  matcher: ['/login/:path*','/blogs/:path*', '/jobs-admin/:path*'],
 }

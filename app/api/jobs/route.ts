@@ -21,7 +21,9 @@ export async function GET(request: NextRequest, { params }: any) {
     let jobs = await Jobs.find()
       .skip((skipPage-1) * skip)
       .limit(limit);
-    return NextResponse.json({ jobs }, { status: 200 });
+    let totalCount = await Jobs.countDocuments();
+    console.log("total count", totalCount)
+    return NextResponse.json({ jobs, totalCount }, { status: 200 });
   } catch (e: any) {
     return NextResponse.json({ message: e.message }, { status: 500 });
   }
