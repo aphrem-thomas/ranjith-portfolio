@@ -64,7 +64,7 @@ function Addjob() {
                                 Role
                             </label>
                             <input value={role} onChange={(e)=>setRole(e.target.value)} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="company" type="text" placeholder="software developer"/>
-                                <p className="text-red-500 text-xs italic">"Please role (like software developer)"</p>
+                                <p className="text-red-500 text-xs italic">Please role (like software developer)</p>
                         </div>
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-bold mb-2">

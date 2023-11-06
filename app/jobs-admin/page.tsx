@@ -29,7 +29,7 @@ function Jobs() {
         <div className="jobListings ml-20  w-4/6">
           {jobList.map((item: any) => {
             return (
-              <div className="flex">
+              <div key={item._id} className="flex">
               <a href={item.url} target="_blank">
                 <JobCard
                   bgColor="bg-white"

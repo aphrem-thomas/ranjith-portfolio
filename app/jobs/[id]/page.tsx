@@ -37,7 +37,7 @@ async function Jobs({ params }: { params: { id: string } }) {
         <div className="jobListings ml-20 w-4/6">
           {jobList.map((item: any) => {
             return (
-              <a href={item.url} target="_blank">
+              <a key={item._id} href={item.url} target="_blank">
                 <JobCard
                   bgColor="bg-white"
                   thumbnail={item.thumbnailurl}
