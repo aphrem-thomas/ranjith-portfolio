@@ -26,14 +26,12 @@ function BlogPage({params:{id}}:{params:{id:string}}){
     function getBlogData(id:string){
         fetch(process.env.NEXT_PUBLIC_URL+`/api/blogs/${id}`,{ cache: 'no-store' }).then((res)=>{
             res.json().then((result)=>{
-                console.log("results",result)
                 setData(result);
             })
         })
     }
     const approveBlog = (id:string, ver:boolean)=> {
         fetch(process.env.NEXT_PUBLIC_URL+`/api/blogs/${id}?approve=${ver}`,{ method:'POST', cache: 'no-store' }).then((res)=>{
-            console.log("res",res)
             if(res.ok){
                 getBlogData(id)
             } else {

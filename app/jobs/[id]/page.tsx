@@ -1,6 +1,7 @@
 import JobCard from "@/components/JobCard/JobCard";
 import { getPossibleInstrumentationHookFilenames } from "next/dist/build/utils";
 import Link from "next/link";
+import Image from 'next/image'
 
 async function getJobData(id:string) {
     const res = await fetch(process.env.NEXT_PUBLIC_URL+`/api/jobs?page=${id}`,{ cache: "no-cache"});
@@ -32,9 +33,12 @@ async function Jobs({ params }: { params: { id: string } }) {
 
   return (
     <>
-    <div className="bg-bg-jobs w-screen min-h-screen flex flex-col items-center">
+    <div className="headerImage w-full top-0 left-0 absolute z-20">
+      <img className="h-80 w-full object-cover" src='/work.jpg'/>
+    </div>
+    <div className="bg-bg-jobs mt-56 w-screen min-h-screen flex flex-col items-center z-50">
       <div className="container">
-        <div className="jobListings ml-20 w-4/6">
+        <div className="jobListings mt-10  ml-20 w-4/6 min-h-[70vh]">
           {jobList.map((item: any) => {
             return (
               <a key={item._id} href={item.url} target="_blank">

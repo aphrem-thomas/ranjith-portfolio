@@ -17,12 +17,12 @@ function Navbar () {
     const currentRoute = usePathname();
     // const [activeTab, setActiveTab] = useState('home')
     return(
-        <div className={`navwrapper sticky z-10 top-0 left-0 w-screen flex flex-col items-center ${currentRoute.includes('/blogs')?'bg-accent text-background':''}
-        ${currentRoute.includes('/jobs')?'bg-bg-jobs':''}
+        <div className={`navwrapper z-50 ${currentRoute.includes('/jobs')?'':'sticky top-0 left-0'} w-screen flex flex-col items-center ${currentRoute.includes('/blogs')?'bg-accent text-background':''}
+        ${currentRoute.includes('/jobs')?'bg-transparent':''}
         `}>
         <nav className="flex flex-row container text-2xl h-10 items-center mt-7 mb-7">
-            <div className={`tradeMark ml-20 w-52 ${anton.className}`}>Ranjith Mathew</div>
-            <div className="navigation underline-offset-8 decoration-primary flex flex-row justify-end container text-2xl">
+            <div className={`tradeMark ml-20 w-52 ${currentRoute.includes('/jobs')?'text-white':''} ${anton.className}`}>Ranjith Mathew</div>
+            <div className={`navigation ${currentRoute.includes('/jobs')?'bg-transparent text-white':''} underline-offset-8 decoration-primary flex flex-row justify-end container text-2xl`}>
                 <Link className={`home ${currentRoute==='/'?'underline':''}  w-10 ml-10`} href="/">Home</Link>
                 <Link className={`home ${currentRoute==='/contact'?'underline':''} w-10 ml-10`} href="/contact">Contact</Link>
                 {/* <Link className={`home ${currentRoute==='/works'?'underline':''} w-10 ml-10`} href="/works">Works</Link> */}
