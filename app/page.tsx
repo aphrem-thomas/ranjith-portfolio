@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className={`parent flex w-full flex-col items-center h-[calc(100vh-6rem)]`}>
       <div className="container flex">
-        <div className="picAndText flex mt-40 h-[40rem] justify-center w-full">
+        <div className="picAndText flex mt-40 justify-center w-full flex-col">
           <div className="dpimage h-full flex-1 flex flex-row justify-end">
             <img
               src="/Ranjith.jpg"
@@ -16,8 +16,8 @@ export default function Home() {
               style={{ objectFit: "contain" }}
             />
           </div>
-          <div className="intro flex flex-1 flex-col justify-center relative">
-            <div className="hello -left-20 top-16 absolute text-6xl bg-text h-24 w-80 mb-10 flex flex-col justify-center items-center">
+          <div className="intro flex flex-1 flex-col justify-center items-center relative">
+            <div className="hello mt-3 text-6xl bg-text h-24 w-80 mb-10 flex flex-col justify-center items-center">
               <p className="text-background ">Hi it&apos;s Ranjith...</p>
             </div>
             <div className="statement h-44 ml-5 w-80 text-xl">
