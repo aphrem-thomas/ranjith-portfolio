@@ -34,14 +34,14 @@ async function Jobs({ params }: { params: { id: string } }) {
   return (
     <>
     <div className="headerImage w-full top-0 left-0 absolute z-20">
-      <img className="h-80 w-full object-cover" src='/work.jpg'/>
+      <img className="h-48 w-full object-cover" src='/work.jpg'/>
     </div>
-    <div className="bg-bg-jobs mt-56 w-screen min-h-screen flex flex-col items-center z-50">
-      <div className="container">
-        <div className="jobListings mt-10  ml-20 w-4/6 min-h-[70vh]">
+    <div className="bg-bg-jobs mt-24 w-screen min-h-screen flex flex-col content-center items-center z-50">
+      <div className=" w-full flex flex-col mt-10 justify-center items-center">
+        <div className="jobListings min-h-[58vh] w-full flex flex-col items-center p-4">
           {jobList.map((item: any) => {
             return (
-              <a key={item._id} href={item.url} target="_blank">
+              <a className="w-full h-32" key={item._id} href={item.url} target="_blank">
                 <JobCard
                   bgColor="bg-white"
                   thumbnail={item.thumbnailurl}

@@ -103,29 +103,18 @@ function Blogs(props: any) {
     return (
         <>
         <div className="blogsMain w-full min-h-screen flex flex-col items-center bg-white">
-        <div className="headBanner w-full bg-accent h-72 flex flex-col items-center">
-                <div className="headBannerWrapper container flex justify-between ml-36">
-                    <div className="writeHeader text-9xl text-accent-comp h-72">Write</div>
-                    <img className="w-96" src='/paper.svg'/>
+        <div className="headBanner w-full bg-accent h-40 flex flex-col items-center">
+                <div className="headBannerWrapper container flex p-2 justify-between">
+                    <div className="writeHeader text-9xl text-accent-comp">Write</div>
+                    <img className="w-32" src='/paper.svg'/>
                 </div>
             </div>
-            <div className="sticky w-full top-24 left-0 bg-accent z-10 flex items-center justify-center h-20 addBlogButton">
-                <div className="container ml-36">
-                    <button onClick={() => { showModalSet(true) }} className="bg-accent-comp w-40 text-xl text-accent font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit article</button>
-                </div>
+            <div className="p-2 sticky w-full top-24 left-0 bg-accent z-10 flex items-center justify-end h-20 addBlogButton">
+                <button onClick={() => { showModalSet(true) }} className="bg-accent-comp w-40 text-xl text-accent font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit article</button>
             </div>
 
-            <div className="blogmain relative ml-20 flex mt-20 container">
-                <div className="showblogs w-2/3 flex flex-col">
-                    {
-                        blogs && blogs.length && blogs.map((blog: any, index) => {
-                            return (
-                                <BlogsCard key={blog._id} blog={blog} selectBlog={clickBlog} />
-                            )
-                        })
-                    }
-                </div>
-                <div className="tagsSelection sticky top-48 h-96 ml-5 w-1/3">
+            <div className="blogmain relative flex flex-col container p-2">
+                <div className="tagsSelection sticky top-48">
                     <div className="tagList bg-white-accent p-2 h-full">
                         <h2 className="text-2xl font-bold">Topics</h2>
                         <div className="tagListDisplay mt-4">
@@ -137,6 +126,16 @@ function Blogs(props: any) {
                         </div>
                     </div>
                 </div>
+                <div className="showblogs flex flex-col">
+                    {
+                        blogs && blogs.length && blogs.map((blog: any, index) => {
+                            return (
+                                <BlogsCard className="mt-1" key={blog._id} blog={blog} selectBlog={clickBlog} />
+                            )
+                        })
+                    }
+                </div>
+                
                 {showModal && <div className="formModal z-20 bg-white/80 fixed left-0 top-0 justify-center w-full h-full flex items-center">
                     <div className="bg-background-1 w-1/3 p-10 rounded shadow">
                         <div className="nameAndEmail flex justify-between">

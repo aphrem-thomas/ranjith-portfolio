@@ -11,16 +11,25 @@ const anton = Anton({
     weight: '400',
     variable:'--anton-font'
   })
-
+function getBgColor(){
+    const currentRoute = usePathname();
+    if(currentRoute.includes('/jobs')){
+        return 'bg-transparent'
+    }
+    else if(currentRoute.includes('/blogs')){
+        return 'bg-accent text-background'
+    }
+    else {
+        return 'bg-background'
+    }
+}
 function Navbar () {
     {/* Get the current route */}
     const currentRoute = usePathname();
     // const [activeTab, setActiveTab] = useState('home')
     return(
-        <div className={`navwrapper z-50 ${currentRoute.includes('/jobs')?'':'sticky top-0 left-0'} flex flex-col items-center ${currentRoute.includes('/blogs')?'bg-accent text-background':''}
-        ${currentRoute.includes('/jobs')?'bg-transparent':''}
-        `}>
-        <nav className="flex flex-row container text-2xl h-10 items-center mt-7 mb-7">
+        <div className={`navwrapper z-50 w-full ${currentRoute.includes('/jobs')?'':'sticky top-0 left-0'} flex flex-col items-center ${getBgColor()}`}> 
+        <nav className="flex flex-row container text-2xl h-10 p-4 items-center mt-7 mb-7">
             <div className={`tradeMark ${currentRoute.includes('/jobs')?'text-white':''} ${anton.className}`}>Ranjith Mathew</div>
             <div className={`navigation ${currentRoute.includes('/jobs')?'bg-transparent text-white':''} underline-offset-8 decoration-primary flex flex-row justify-end container text-2xl`}>
                 <Link className={`home ${currentRoute==='/'?'underline':''} ml-2`} href="/">Home</Link>
