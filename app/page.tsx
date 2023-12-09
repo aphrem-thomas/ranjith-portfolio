@@ -1,13 +1,24 @@
 import Navbar from '@/components/navbar/navbar'
 import WorkBanner from '@/components/workBanner/workbanner'
 import Image from 'next/image'
+import {Anton} from 'next/font/google'
 
+
+const anton = Anton({
+  subsets: ['latin'],
+  weight: '400',
+  variable:'--anton-font'
+})
 
 export default function Home() {
   return (
-    <div className={`parent flex w-full flex-col items-center h-[calc(100vh-6rem)]`}>
+    <div className={`parent flex w-full flex-col items-center`}>
       <div className="container flex">
-        <div className="picAndText flex mt-40 justify-center w-full flex-col">
+        <div className="picAndText flex justify-center w-full flex-col">
+          <div className="hello text-8xl mb-10 flex flex-col">
+              <p className={`text-text ${anton.className} tracking-[13px]`}>RANJITH</p>
+              <p className={`text-text ${anton.className} tracking-[7px]`}>MATHEW</p>
+            </div>
           <div className="dpimage h-full flex-1 flex flex-row justify-end">
             <img
               src="/Ranjith.jpg"
@@ -17,9 +28,6 @@ export default function Home() {
             />
           </div>
           <div className="intro flex flex-1 flex-col justify-center items-center relative">
-            <div className="hello mt-3 text-6xl bg-text h-24 w-80 mb-10 flex flex-col justify-center items-center">
-              <p className="text-background ">Hi it&apos;s Ranjith...</p>
-            </div>
             <div className="statement h-44 ml-5 w-80 text-xl">
               <p>
                 Ranjith Mathew is a passionate community builder,
