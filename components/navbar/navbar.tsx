@@ -25,7 +25,7 @@ function Navbar() {
     const [dropdown, setDropdown] = useState(false);
     return (
         <div
-            className={`navwrapper z-50 w-full flex flex-col  items-center ${getBgColor(
+            className={`navwrapper z-30 w-full flex flex-col  items-center ${getBgColor(
                 currentRoute
             )}`}
         >

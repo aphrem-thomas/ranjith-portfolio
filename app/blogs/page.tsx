@@ -166,8 +166,8 @@ function Blogs(props: any) {
           </div>
 
           {showModal && (
-            <div className="formModal z-200 bg-white/80 fixed left-0 top-0 justify-center p-4 h-full flex items-center">
-              <div className="bg-background-1 p-10 rounded shadow">
+            <div className="formModal z-40 bg-white/80 fixed left-0 top-0 justify-center p-4 h-full flex items-center">
+              <div className="bg-background-1 w-full p-10 rounded shadow">
                 <div className="nameAndEmail">
                   <div className="mb-2">
                     <label className="block text-gray-700 text-sm font-bold">
