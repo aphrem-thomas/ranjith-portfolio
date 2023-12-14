@@ -14,10 +14,10 @@ export default function Home() {
   return (
     <div className={`parent flex w-full flex-col items-center`}>
       <div className="container flex">
-        <div className="picAndText flex justify-center w-full flex-col">
+        <div className="picAndText flex items-center w-full flex-col">
           <div className="hello text-8xl mb-10 flex flex-col">
-              <p className={`text-text ${anton.className} tracking-[13px]`}>RANJITH</p>
-              <p className={`text-text ${anton.className} tracking-[7px]`}>MATHEW</p>
+              <div className={`text-text ${anton.className} tracking-[13px]`}>RANJITH</div>
+              <div className={`text-text ${anton.className} tracking-[7px]`}>MATHEW</div>
             </div>
           <div className="dpimage h-full flex-1 flex flex-row justify-end">
             <img
@@ -27,8 +27,8 @@ export default function Home() {
               style={{ objectFit: "contain" }}
             />
           </div>
-          <div className="intro flex flex-1 flex-col justify-center items-center relative">
-            <div className="statement h-44 ml-5 w-80 text-xl">
+          <div className="intro mt-8 flex flex-1 flex-col justify-center items-center relative">
+            <div className="statement h-44  w-80 text-xl text-justify">
               <p>
                 Ranjith Mathew is a passionate community builder,
                 skilled in fostering connections and a talented career
