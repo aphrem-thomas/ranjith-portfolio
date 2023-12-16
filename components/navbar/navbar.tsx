@@ -10,6 +10,7 @@ const anton = Anton({
     weight: "400",
     variable: "--anton-font",
 });
+
 function getBgColor(currentRoute: any) {
     if (currentRoute.includes("/jobs")) {
         return "bg-transparent";
@@ -19,6 +20,12 @@ function getBgColor(currentRoute: any) {
         return "bg-background";
     }
 }
+
+function getHeader(currentRoute: string){
+    let primeRoute = currentRoute.split('/')[1] ;
+    return primeRoute;
+}
+
 function Navbar() {
     const currentRoute = usePathname();
     // const [activeTab, setActiveTab] = useState('home')
@@ -29,7 +36,7 @@ function Navbar() {
                 currentRoute
             )}`}
         >
-            <nav className="flex relative w-full text-2xl p-4">
+            <nav className="flex relative w-full text-2xl p-4 justify-center items-center h-28">
                 <div
                     className={`tradeMark ${currentRoute.includes("/jobs") ? "text-white" : ""
                         } ${anton.className} hidden sm:block`}
@@ -38,7 +45,7 @@ function Navbar() {
                 </div>
                 <button
                     onClick={() => setDropdown(!dropdown)}
-                    className="relative group h-20"
+                    className="group h-20 absolute left-0 ml-4"
                 >
                     <div className="flex flex-col justify-between w-[20px] h-[20px] ">
                         <div
@@ -55,6 +62,9 @@ function Navbar() {
                         ></div>
                     </div>
                 </button>
+                <div className="header">
+                    <div className="text-text text-3xl uppercase">{getHeader(currentRoute)}</div>
+                </div>
                 <div
                     id="navbar-default"
                     className={`hidden navigation ${currentRoute.includes("/jobs") ? "bg-transparent text-white" : ""
