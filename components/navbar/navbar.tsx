@@ -11,11 +11,19 @@ const anton = Anton({
     variable: "--anton-font",
 });
 
+function getDropdownBgColor(currentRoute: any) {
+    if (currentRoute.includes("/jobs")) {
+        return "bg-white";
+    } else {
+        return "bg-background";
+    }
+}
+
 function getBgColor(currentRoute: any) {
     if (currentRoute.includes("/jobs")) {
         return "bg-transparent";
     } else if (currentRoute.includes("/blogs")) {
-        return "bg-white";
+        return "bg-background-2";
     } else {
         return "bg-background";
     }
@@ -103,7 +111,7 @@ function Navbar() {
                     id="navbar-mobile"
                     onClick={() => setDropdown(!dropdown)}
                     className={`navigation absolute w-40 left-4 top-20
-                bg-background 
+                ${getDropdownBgColor(currentRoute)}
                 text-text
                 underline-offset-8 decoration-primary flex flex-col justify-end container text-2xl
                 h-0 overflow-hidden transition-[height] duration-50 ease-in-out z-50

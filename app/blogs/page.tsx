@@ -117,11 +117,12 @@ function Blogs(props: any) {
   }
   return (
     <>
-      <div className="blogsMain w-full min-h-screen flex flex-col items-center bg-white">
+      <div className="blogsMain w-full min-h-screen flex flex-col items-center">
 
-        <div className="blogmain relative flex flex-col container p-2">
-          <div className="tagsSelection sticky top-0">
-            <div className="tagList bg-white p-2 h-full">
+        <div className="blogmain relative flex flex-col container">
+          <div className="tagsSelection bg-background-2 sticky top-0 p-4">
+            <div className="tagList p-2 h-full">
+              <div className="categories text-4xl">Categories</div>
               <div className="tagListDisplay mt-4 max-h-48 overflow-auto">
                 {tagList.map((tag) => {
                   return (
@@ -140,14 +141,14 @@ function Blogs(props: any) {
                 onClick={() => {
                     showModalSet(true);
                 }}
-                className="w-60 border-[1px] border-solid bg-text text-xl text-white py-2 px-4 rounded-3xl focus:outline-none focus:shadow-outline"
+                className="w-60 bg-text text-xl text-white py-2 px-4 rounded-3xl focus:outline-none focus:shadow-outline"
                 >
                 Submit article
                 </button>
               </div>
             </div>
           </div>
-          <div className="showblogs flex flex-col mt-4">
+          <div className="showblogs flex flex-col p-2 mt-4">
             {blogs &&
               !!blogs.length ?
               blogs.filter((blog:any)=>(
