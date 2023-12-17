@@ -37,8 +37,8 @@ function Login(){
     }
     return(
         <>
-        <div className="contactForm w-2/5">
-                <div className="w-full">
+        <div className="contactForm w-full">
+                <div className="p-4">
                     <div className="bg-background-1 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
