@@ -106,7 +106,7 @@ function Navbar() {
                 bg-background 
                 text-text
                 underline-offset-8 decoration-primary flex flex-col justify-end container text-2xl
-                h-0 overflow-hidden transition-[height] duration-50 ease-in-out
+                h-0 overflow-hidden transition-[height] duration-50 ease-in-out z-50
                 ${dropdown
                             ? "h-32 border-[1px] border-solid rounded-sm shadow-sm"
                             : ""

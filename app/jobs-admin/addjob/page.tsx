@@ -49,8 +49,8 @@ function Addjob() {
     }
     return (
         <>
-        <div className="contactsMain container ml-20 flex mt-20">
-            <div className="contactForm w-2/5">
+        <div className="contactsMain p-4 w-full flex">
+            <div className="contactForm w-full">
                 <div className="w-full">
                     <div className="bg-background-1 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <div className="mb-4">

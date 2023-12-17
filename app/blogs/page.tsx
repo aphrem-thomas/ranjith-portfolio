@@ -121,27 +121,26 @@ function Blogs(props: any) {
 
         <div className="blogmain relative flex flex-col container p-2">
           <div className="tagsSelection sticky top-0">
-            <div className="tagList bg-white-accent p-2 h-full">
-              <h2 className="text-2xl font-bold">Topics</h2>
-              <div className="tagListDisplay mt-4">
+            <div className="tagList bg-white p-2 h-full">
+              <div className="tagListDisplay mt-4 max-h-48 overflow-auto">
                 {tagList.map((tag) => {
                   return (
                     <span
                     onClick={()=>tagSelect(tag)}
                       key={tag}
-                      className={`tags text-center h-8 mb-2 inline-flex items-center bg-background-1 ml-2 p-1 rounded-xl pl-5 pr-5 ${selected===tag?'bg-black-light text-white':''}`}
+                      className={`tags text-center h-8 mb-2 inline-flex items-center bg-background-1 ml-2 p-1 rounded-xl pl-5 pr-5 ${selected===tag?'text-white bg-background-3':''}`}
                     >
                       {tag}
                     </span>
                   );
                 })}
               </div>
-              <div className="w-full mt-4 mb-4 flex justify-center">
+              <div className="w-full mt-4 mb-4 flex">
                 <button
                 onClick={() => {
                     showModalSet(true);
                 }}
-                className="w-60 border-[1px] border-solid text-xl text-text py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="w-60 border-[1px] border-solid bg-text text-xl text-white py-2 px-4 rounded-3xl focus:outline-none focus:shadow-outline"
                 >
                 Submit article
                 </button>
@@ -150,7 +149,7 @@ function Blogs(props: any) {
           </div>
           <div className="showblogs flex flex-col mt-4">
             {blogs &&
-              blogs.length &&
+              !!blogs.length ?
               blogs.filter((blog:any)=>(
                 !selected? true : blog.tags.includes(selected)
             )).map((blog: any, index) => {
@@ -162,7 +161,8 @@ function Blogs(props: any) {
                     selectBlog={clickBlog}
                   />
                 );
-              })}
+              }):
+              <div>Loading...</div>}
           </div>
 
           {showModal && (
