@@ -119,8 +119,8 @@ function Blogs(props: any) {
     <>
       <div className="blogsMain w-full min-h-screen flex flex-col items-center">
 
-        <div className="blogmain relative flex flex-col container">
-          <div className="tagsSelection bg-background-2 sticky top-0 p-4">
+        <div className="blogmain relative flex flex-col md:flex-row-reverse container">
+          <div className="tagsSelection bg-background-2 md:w-1/5 md:bg-background sticky top-0 p-4 md:mt-6">
             <div className="tagList p-2 h-full">
               <div className="categories text-4xl">Categories</div>
               <div className="tagListDisplay mt-4 max-h-48 overflow-auto">
@@ -148,7 +148,7 @@ function Blogs(props: any) {
               </div>
             </div>
           </div>
-          <div className="showblogs flex flex-col p-2 mt-4">
+          <div className="showblogs w-full flex flex-col p-2 mt-4">
             {blogs &&
               !!blogs.length ?
               blogs.filter((blog:any)=>(
