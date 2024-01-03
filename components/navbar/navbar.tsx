@@ -44,7 +44,7 @@ function Navbar() {
                 currentRoute
             )}`}
         >
-            <nav className="flex relative w-full text-2xl p-4 justify-center items-center h-28">
+            <nav className="flex relative w-full text-2xl p-4 justify-center  items-center h-28 md:container md:justify-normal">
                 <div
                     className={`tradeMark ${currentRoute.includes("/jobs") ? "text-white" : ""
                         } ${anton.className} hidden sm:block`}
@@ -53,7 +53,7 @@ function Navbar() {
                 </div>
                 <button
                     onClick={() => setDropdown(!dropdown)}
-                    className="group h-20 absolute left-0 ml-4"
+                    className="group h-20 absolute left-0 ml-4 md:hidden"
                 >
                     <div className="flex flex-col justify-between w-[20px] h-[20px] ">
                         <div
@@ -70,13 +70,13 @@ function Navbar() {
                         ></div>
                     </div>
                 </button>
-                <div className="header">
+                <div className="header w-full absolute flex justify-center">
                     <div className="text-text text-3xl uppercase">{getHeader(currentRoute)}</div>
                 </div>
                 <div
                     id="navbar-default"
-                    className={`hidden navigation ${currentRoute.includes("/jobs") ? "bg-transparent text-white" : ""
-                        } underline-offset-8 decoration-primary flex flex-col justify-end container text-2xl`}
+                    className={`hidden z-10 navigation ${currentRoute.includes("/jobs") ? "bg-transparent text-white" : ""
+                        } underline-offset-8 decoration-primary flex-col justify-end container text-2xl md:flex md:flex-row`}
                 >
                     <Link
                         className={`home ${currentRoute === "/" ? "underline" : ""} ml-2`}

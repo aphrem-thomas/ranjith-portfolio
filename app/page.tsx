@@ -15,20 +15,22 @@ export default function Home() {
     <div className={`parent flex w-full flex-col items-center`}>
       <div className="container flex">
         <div className="picAndText flex items-center w-full flex-col">
-          <div className="hello text-8xl mb-10 flex flex-col">
+          <div className="hello text-8xl mb-10 flex flex-col md:hidden">
               <div className={`text-text ${anton.className} tracking-[13px]`}>RANJITH</div>
               <div className={`text-text ${anton.className} tracking-[7px]`}>MATHEW</div>
             </div>
-          <div className="dpimage h-full flex-1 flex flex-row justify-end">
+          <div className="dpimage lg:h-[35rem] 2xl:h-[46rem] h-full flex flex-row md:flex-col md:justify-center md:relative md:mt-12">
             <img
               src="/Ranjith.jpg"
               alt="pic"
-              className="h-auto"
-              style={{ objectFit: "contain" }}
+              className="w-auto h-auto max-w-full max-h-full"
             />
+            <div className="hidden md:flex hello lg:left-[19rem] 2xl:left-[26rem] lg:top-20  2xl:top-40 absolute lg:text-4xl 2xl:text-6xl bg-text h-24 lg:w-52 2xl:w-80 mb-10 flex-col justify-center items-center">
+              <p className="text-background ">Hi it&apos;s Ranjith...</p>
+            </div>
           </div>
-          <div className="intro mt-8 flex flex-1 flex-col justify-center items-center relative">
-            <div className="statement h-44  w-80 text-xl text-justify">
+          <div className="intro mt-2 md:mt-10 flex flex-col justify-center items-center relative">
+            <div className="statement p-4 md:w-2/3 text-xl text-justify">
               <p>
                 Ranjith Mathew is a passionate community builder,
                 skilled in fostering connections and a talented career
