@@ -120,14 +120,18 @@ function Blogs(props: any) {
       <div className="blogsMain w-full min-h-screen flex flex-col items-center">
 
         <div className="blogmain relative flex flex-col md:flex-row-reverse container">
-          <div className="tagsSelection bg-background-2 md:w-1/5 md:bg-background sticky top-0 p-4 md:mt-6">
+          <div onClick={()=>{console.log("out tag");tagSelect('')}} className="tagsSelection bg-background-2 md:w-1/5 md:bg-background sticky top-0 p-4 md:mt-6">
             <div className="tagList p-2 h-full">
               <div className="categories text-4xl">Categories</div>
-              <div className="tagListDisplay mt-4 max-h-48 overflow-auto">
+              <div className="tagListDisplay  mt-4 max-h-48 md:max-h-[calc(100vh-350px)] overflow-auto">
                 {tagList.map((tag) => {
                   return (
                     <span
-                    onClick={()=>tagSelect(tag)}
+                    onClick={(e)=>{
+                      e.stopPropagation()
+                      console.log("in tag")
+                      tagSelect(tag)
+                    }}
                       key={tag}
                       className={`tags text-center h-8 mb-2 inline-flex items-center bg-background-1 ml-2 p-1 rounded-xl pl-5 pr-5 ${selected===tag?'text-white bg-background-3':''}`}
                     >

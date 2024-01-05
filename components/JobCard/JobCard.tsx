@@ -2,7 +2,7 @@ import { checkIsOnDemandRevalidate } from "next/dist/server/api-utils"
 
 const JobCard = (props:any)=>{
     return(
-        <div className={`jobsCardmain cursor-pointer flex w-full shadow-md ${props.bgColor} p-1 mb-4`}>
+        <div className={`jobsCardmain cursor-pointer flex w-full shadow-md ${props.bgColor} p-1`}>
             <div className="thumbnailImage w-36 ">
                 <img className="h-full w-full object-fit"src={props.thumbnail}/>
             </div>

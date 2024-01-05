@@ -36,9 +36,9 @@ async function Jobs({ params }: { params: { id: string } }) {
     <div className="headerImage w-full top-0 left-0 absolute z-20">
       <img className="h-48 w-full object-cover" src='/work.jpg'/>
     </div>
-    <div className="bg-bg-jobs  w-screen min-h-screen flex flex-col content-center items-center z-20">
-      <div className=" w-full flex flex-col mt-10 justify-center items-center">
-        <div className="jobListings min-h-[58vh] w-full flex flex-col items-center p-4">
+    <div className="bg-bg-jobs w-full min-h-screen flex flex-col content-center items-center z-20">
+      <div className=" w-full md:container flex flex-col mt-10 justify-center items-center">
+        <div className="jobListings min-h-[58vh] w-full md:w-4/6 flex flex-col items-center p-4">
           {jobList.map((item: any) => {
             return (
               <a className="w-full h-32" key={item._id} href={item.url} target="_blank">

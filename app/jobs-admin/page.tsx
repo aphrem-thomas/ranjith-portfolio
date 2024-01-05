@@ -24,13 +24,17 @@ function Jobs() {
     })
   }
   return (
-    <div className="bg-bg-jobs w-screen min-h-screen flex flex-col items-center">
-      <div className="h-10 container">
-        <div className="jobListings ml-20  w-4/6">
+    <>
+    <div className="headerImage w-full top-0 left-0 absolute z-20">
+      <img className="h-48 w-full object-cover" src='/work.jpg'/>
+    </div>
+    <div className="bg-bg-jobs w-full min-h-screen flex flex-col items-center z-20">
+      <div className="w-full md:container flex justify-center">
+        <div className="jobListings ml-20 w-full md:w-4/6 md:container">
           {jobList.map((item: any) => {
             return (
-              <div key={item._id} className="flex">
-              <a href={item.url} target="_blank">
+              <div key={item._id} className="flex items-center">
+              <a className="w-full h-32" href={item.url} target="_blank">
                 <JobCard
                   bgColor="bg-white"
                   thumbnail={item.thumbnailurl}
@@ -41,7 +45,7 @@ function Jobs() {
                   link={item.url}
                 />
               </a>
-              <button onClick={()=>deleteJob(item._id)}>Delete</button>
+              <button className="bg-hazard ml-2 h-10 mb-2 w-32 cursor-pointer rounded-lg" onClick={()=>deleteJob(item._id)}>Delete</button>
               </div>
             );
           })}
@@ -49,6 +53,7 @@ function Jobs() {
         <div className="sidebar w-2/6"></div>
       </div>
     </div>
+    </>
   );
 }
 
