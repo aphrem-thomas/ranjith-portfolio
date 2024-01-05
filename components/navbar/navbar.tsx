@@ -3,6 +3,7 @@
 import { Anton } from "next/font/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const anton = Anton({
@@ -38,6 +39,7 @@ function Navbar() {
     const currentRoute = usePathname();
     // const [activeTab, setActiveTab] = useState('home')
     const [dropdown, setDropdown] = useState(false);
+    const router = useRouter()
     return (
         <div
             className={`navwrapper z-30 w-full flex flex-col  items-center ${getBgColor(
@@ -46,14 +48,15 @@ function Navbar() {
         >
             <nav className="flex relative w-full text-2xl p-4 md:p-0 justify-center  items-center h-28 md:container md:justify-normal">
                 <div
-                    className={`tradeMark ${currentRoute.includes("/jobs") ? "text-white" : ""
+                onClick={()=>{router.push('/')}}
+                    className={`tradeMark z-50 cursor-pointer ${currentRoute.includes("/jobs") ? "text-white" : ""
                         } ${anton.className} hidden sm:block`}
                 >
                     Ranjith Mathew
                 </div>
                 <button
                     onClick={() => setDropdown(!dropdown)}
-                    className="group h-20 absolute left-0 ml-4 md:hidden"
+                    className="z-50 group h-20 absolute left-0 ml-4 md:hidden"
                 >
                     <div className="flex flex-col justify-between w-[20px] h-[20px] ">
                         <div
