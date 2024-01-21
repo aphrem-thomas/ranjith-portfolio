@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import AlertMessage from "@/components/alertMessage/AlertMessage";
 import BlogsCard from "@/components/BlogsCard/BlogsCard";
 import { clearPreviewData } from "next/dist/server/api-utils";

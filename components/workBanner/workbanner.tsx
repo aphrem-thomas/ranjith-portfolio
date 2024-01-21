@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
 // import { useState } from "react";
 import { Anton } from "next/font/google";
+import { useEffect, useState } from "react";
 
-function getScreenType(): string {
-  const resolution = window.innerWidth;
+function getScreenType(resolution:any): string {
   if (resolution > 1536) return "2xl";
   else if (resolution > 1280) return "xl";
   else if (resolution > 1024) return "lg";
@@ -30,11 +30,28 @@ function getContentWidth(type: string) {
       return "600";
     case "2xl":
       return "600";
+    default:
+      return "250";
   }
 }
-const screenSize = getContentWidth(getScreenType());
 
 function WorkBanner() {
+    const [screenSize, setWindowSize] = useState('0');
+      useEffect(() => {
+        console.log("in use effect")
+        if(typeof window !== undefined){
+            setWindowSize(getContentWidth(getScreenType(window.innerWidth)));  
+            const handleWindowResize = () => {
+                setWindowSize(getContentWidth(getScreenType(window.innerWidth)));
+              };
+          
+              window.addEventListener('resize', handleWindowResize);
+          
+              return () => {
+                window.removeEventListener('resize', handleWindowResize);
+              };
+        }
+      }, []);
   return (
     <div  id="work_banner" className="workbanner w-full mt-96 md:mt-0 bg-background-2">
         <div className="heading flex justify-center mt-10 mb-4 text-4xl md:text-8xl">
