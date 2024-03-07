@@ -117,7 +117,7 @@ function Blogs(props: any) {
   }
   return (
     <>
-      <div className="blogsMain w-full min-h-screen flex flex-col items-center">
+      <div className="blogsMain w-full md:max-w-5xl min-h-screen flex flex-col items-center">
 
         <div className="blogmain relative flex flex-col md:flex-row-reverse container">
           <div onClick={()=>{console.log("out tag");tagSelect('')}} className="tagsSelection bg-background-2 md:w-1/5 md:bg-background sticky top-0 p-4 md:mt-6">

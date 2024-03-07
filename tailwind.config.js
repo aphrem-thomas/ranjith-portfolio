@@ -15,6 +15,21 @@ module.exports = {
       transitionProperty: {
         'height': 'height'
       },
+      animation: {
+        'infinite-scroll1': 'infinite-scroll1 20s linear infinite',
+        'infinite-scroll2': 'infinite-scroll2 3s linear infinite',
+      },
+      keyframes: {
+        'infinite-scroll1': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(0px - 50%))' },
+        },
+        'infinite-scroll2': {
+          from: { transform: 'translateX(100%)' },
+          to: { transform: 'translateX(0)' },
+        }
+      } 
+      
     },
     colors:{
       'black-light':'#24232c',

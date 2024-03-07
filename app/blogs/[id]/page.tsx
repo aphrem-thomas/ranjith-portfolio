@@ -20,7 +20,7 @@ async function BlogPage({params:{id}}:{params:{id:string}}){
     const data = await blogData.json()
 
     return(
-        <div id="BlogpageMainContainer" className={`BlogpageMain ${Playfair.className} flex flex-col items-center p-4 w-screen`}>
+        <div id="BlogpageMainContainer" className={`BlogpageMain ${Playfair.className} flex flex-col items-center p-4 w-screen md:max-w-5xl`}>
             <div className="container">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{data.blogs?.text}</ReactMarkdown>
             </div>

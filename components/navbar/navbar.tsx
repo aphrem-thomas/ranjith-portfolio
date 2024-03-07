@@ -46,13 +46,13 @@ function Navbar() {
                 currentRoute
             )}`}
         >
-            <nav className="flex relative w-full text-2xl p-4 md:p-0 justify-center  items-center h-28 md:container md:justify-normal">
+            <nav className="flex relative w-full text-2xl p-4 md:p-0 justify-center  items-center h-28 md:max-w-5xl md:justify-normal">
                 <div
                 onClick={()=>{router.push('/')}}
                     className={`tradeMark z-50 cursor-pointer ${currentRoute.includes("/jobs") ? "text-white" : ""
                         } ${anton.className} hidden sm:block`}
                 >
-                    Ranjith Mathew
+                    RM
                 </div>
                 <button
                     onClick={() => setDropdown(!dropdown)}
