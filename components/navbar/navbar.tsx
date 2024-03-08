@@ -4,7 +4,7 @@ import { Anton } from "next/font/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const anton = Anton({
     subsets: ["latin"],
@@ -40,8 +40,22 @@ function Navbar() {
     // const [activeTab, setActiveTab] = useState('home')
     const [dropdown, setDropdown] = useState(false);
     const router = useRouter()
+    const ref = useRef<any>(null);
+
+    useEffect(() => {
+      function handleClickOutside(event: any) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setDropdown(false);
+        }
+      }
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
     return (
-        <div
+        <div ref={ref}
             className={`navwrapper z-30 w-full flex flex-col  items-center ${getBgColor(
                 currentRoute
             )}`}

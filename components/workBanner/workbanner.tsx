@@ -67,8 +67,7 @@ function WorkBanner() {
         <span className="works text-3xl whitespace-nowrap">Notable works</span>
         <span className="line m-2 h-[1px] w-full bg-text"></span>
       </div>
-      <div className="relative w-full overflow-hidden m-0 p-0">
-      <div className="banner w-fit overflow-hidden p-5 flex h-full">
+      <div className="banner w-full overflow-x-scroll overflow-y-hidden p-5 flex h-full">
         {workLinks.map((id) => (
           <div key={id} className="bannerItem mt-12 ml-2 p-4 border-[1px] border-solid border-text bg-white">
             <iframe
@@ -79,8 +78,6 @@ function WorkBanner() {
             ></iframe>
           </div>
         ))}
-      </div>
-
       </div>
     </div>
   );
