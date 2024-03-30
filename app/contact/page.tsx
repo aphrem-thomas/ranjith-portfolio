@@ -51,8 +51,7 @@ function Contacts() {
                 <h1 className="text-2xl md:text-6xl font-bold">Free Resume review</h1>
                 <div className="disclaimerMessage mt-5 leading-6">
                 <p>As the Technical Resource Manager, my primary responsibilities encompass generating fresh sales leads, overseeing account management, and adeptly identifying outstanding technical talents, particularly for software and hardware development enterprises throughout North America. Leveraging my remarkable networking skills and talent for fostering relationships, I excel at engaging with clients and aiding them in forming high-achieving teams. </p>
-                <p>Beyond my professional endeavors, I derive immense satisfaction from forging community ties and offering invaluable career guidance to newcomers in Canada. My profound dedication to nurturing skills in the leaders of tomorrow drives me to actively participate in volunteer work for non-profit organizations and educational institutions.</p>
-                <p>When I seek moments of serenity and a deeper connection with the natural world, I find solace in the art of fishing. Whether it involves casting a line in a nearby river or embarking on an excursion to a tranquil fishing spot, fishing serves as a means of relaxation and reconnection for me.</p></div>
+            </div>
             </div>
             <div className="contactForm md:container md:flex md:justify-center md:ml-10">
                 <div className="md:w-[30rem]">
