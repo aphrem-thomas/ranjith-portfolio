@@ -47,10 +47,13 @@ function Contacts() {
         <div className="contactsMain flex  items-center md:content-centre md:max-w-5xl md:h-[calc(100vh-7rem)]">
             <div className="flex flex-col md:flex-row">
             <div className="disclaimer p-10 md:p-0 md:max-w-5xl">
-                <div>Submit the form for a ,</div>
+                <div>Submit the form for</div>
                 <h1 className="text-2xl md:text-6xl font-bold">Free Resume review</h1>
                 <div className="disclaimerMessage mt-5 leading-6">
-                <p>As the Technical Resource Manager, my primary responsibilities encompass generating fresh sales leads, overseeing account management, and adeptly identifying outstanding technical talents, particularly for software and hardware development enterprises throughout North America. Leveraging my remarkable networking skills and talent for fostering relationships, I excel at engaging with clients and aiding them in forming high-achieving teams. </p>
+                <p>In the role of Technical Resource Manager, primary responsibilities involve, overseeing account management, generating new sales leads and identifying top technical talent, especially for software and hardware development companies across North America. Leveraging exceptional networking abilities and relationship-building talent, excellence is achieved in client engagement and assisting them in building successful teams.</p>
+                <br/>
+                <p className="text font-bold">Discalimer</p>
+                <p className="text text-sm italic">Please note that by submitting your resume for a free 15-minute consulting session, you consent to the collection and use of your personal information solely for the purpose of providing career guidance and employment assistance. Your information will be treated confidentially and will not be shared with any third parties without your explicit consent.</p>
             </div>
             </div>
             <div className="contactForm md:container md:flex md:justify-center md:ml-10">
