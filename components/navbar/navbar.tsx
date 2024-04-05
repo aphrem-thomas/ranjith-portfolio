@@ -32,6 +32,8 @@ function getBgColor(currentRoute: any) {
 
 function getHeader(currentRoute: string){
     let primeRoute = currentRoute.split('/')[1] ;
+    if (primeRoute === 'contact')
+        return ''
     return primeRoute;
 }
 

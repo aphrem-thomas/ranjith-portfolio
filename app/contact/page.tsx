@@ -8,21 +8,23 @@ function Contacts() {
 
     const [message, setMessage] = useState('')
     const [type, setType] = useState('')
-    const [name, setName] = useState('')
+    const [firstname, setFirstName] = useState('')
+    const [lastname, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [resume, setResume] = useState<any>('')
     const [description, setDescription] = useState<any>('')
     const [alert, showAlert] = useState(false)
 
     async function handleSubmit(){
-        if(name==='' || email ==='' ||resume ==='' ||description===''){
+        if(firstname ==='' || lastname==='' || email ==='' ||resume ==='' ||description===''){
             setType('error')
             setMessage('Please fill all fields')
             showAlert(true)
             return
         }
         const formData = new FormData()
-        formData.append("name", name)
+        console.log("data", firstname, lastname, email, resume, description)
+        formData.append("name", firstname+' '+lastname)
         formData.append('email',email)
         formData.append('resume', resume)
         formData.append('description', description)
@@ -38,7 +40,8 @@ function Contacts() {
             showAlert(true)
             setEmail('')
             setDescription('')
-            setName('')
+            setFirstName('')
+            setLastName('')
             setResume('')
         }
     }
@@ -61,9 +64,15 @@ function Contacts() {
                     <div className="bg-background-1 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
-                                Name
+                                First name
                             </label>
-                            <input value={name} onChange={(e)=>setName(e.target.value)}className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John"/>
+                            <input value={firstname} onChange={(e)=>setFirstName(e.target.value)}className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John"/>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                Last name
+                            </label>
+                            <input value={lastname} onChange={(e)=>setLastName(e.target.value)}className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John"/>
                         </div>
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
