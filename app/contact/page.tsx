@@ -43,11 +43,20 @@ function Contacts() {
             setFirstName('')
             setLastName('')
             setResume('')
+        }else{
+            setType('error')
+            setMessage('error in subimitting data')
+            showAlert(true)
+            setEmail('')
+            setDescription('')
+            setFirstName('')
+            setLastName('')
+            setResume('')  
         }
     }
     return (
         <>
-        <div className="contactsMain flex  items-center md:content-centre md:max-w-5xl md:h-[calc(100vh-7rem)]">
+        <div className="contactsMain flex  items-center md:content-centre md:max-w-5xl">
             <div className="flex flex-col md:flex-row">
             <div className="disclaimer p-10 md:p-0 md:max-w-5xl">
                 <div>Submit the form for</div>
@@ -72,7 +81,7 @@ function Contacts() {
                             <label className="block text-gray-700 text-sm font-bold mb-2">
                                 Last name
                             </label>
-                            <input value={lastname} onChange={(e)=>setLastName(e.target.value)}className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John"/>
+                            <input value={lastname} onChange={(e)=>setLastName(e.target.value)}className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Denver"/>
                         </div>
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
