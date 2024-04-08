@@ -24,6 +24,18 @@ const jobsSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please job url"],
     },
+    submitter:{
+        type: String,
+        required: [true, "Please provide who submitted"],
+    },
+    submitter_email:{
+        type: String,
+        required: [true, "Please provide email of who submitted"],
+    },
+    approved:{
+        type: Boolean,
+        required: [true, "Please provide email of who submitted"],
+    },
     submittedDate: Date,
 })
 

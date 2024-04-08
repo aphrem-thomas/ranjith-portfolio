@@ -23,6 +23,18 @@ function Jobs() {
       getJobData().then((data:any)=>setJobList(data.jobs))
     })
   }
+
+  function approve(id:string) {
+    fetch(process.env.NEXT_PUBLIC_URL+`/api/jobs?id=${id}&approve=${true}`,{ method:'PUT', cache: 'no-store' }).then(()=>{
+      getJobData().then((data:any)=>setJobList(data.jobs))
+    })
+  }
+
+  function forbid(id:string) {
+    fetch(process.env.NEXT_PUBLIC_URL+`/api/jobs?id=${id}&approve=${false}`,{ method:'PUT', cache: 'no-store' }).then(()=>{
+      getJobData().then((data:any)=>setJobList(data.jobs))
+    })
+  }
   return (
     <>
     <div className="headerImage w-full top-0 left-0 absolute z-20">
@@ -30,10 +42,10 @@ function Jobs() {
     </div>
     <div className="bg-bg-jobs w-full min-h-screen flex flex-col items-center z-20">
       <div className="w-full md:container flex justify-center">
-        <div className="jobListings ml-20 w-full md:w-4/6 md:container">
+        <div className="jobListings w-full md:w-4/6 md:container">
           {jobList.map((item: any) => {
             return (
-              <div key={item._id} className="flex items-center">
+              <div key={item._id} className="flex items-center w-full">
               <a className="w-full h-32" href={item.url} target="_blank">
                 <JobCard
                   bgColor="bg-white"
@@ -45,12 +57,15 @@ function Jobs() {
                   link={item.url}
                 />
               </a>
-              <button className="bg-hazard ml-2 h-10 mb-2 w-32 cursor-pointer rounded-lg" onClick={()=>deleteJob(item._id)}>Delete</button>
+              <div className="adminbuttons">
+                <button className="bg-hazard ml-2 h-10 mb-2 w-20 cursor-pointer rounded-lg" onClick={()=>deleteJob(item._id)}>Delete</button>
+                {item.approved===false?<button className="ml-2 bg-primary h-10 mb-2 w-20 cursor-pointer rounded-lg" onClick={()=>approve(item._id)}>Approve</button>
+                :<button className="ml-2 bg-background-5 h-10 mb-2 w-20 cursor-pointer rounded-lg" onClick={()=>forbid(item._id)}>Forbid</button>}
+              </div>
               </div>
             );
           })}
         </div>
-        <div className="sidebar w-2/6"></div>
       </div>
     </div>
     </>
