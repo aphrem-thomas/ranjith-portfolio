@@ -55,6 +55,7 @@ async function Jobs({ params }: { params: { id: string } }) {
                   location={item.location}
                   footer={item.department}
                   link={item.url}
+                  submittedDate={`${item.submittedDate.split('T')[0]}` }
                 />
               </a>
             );

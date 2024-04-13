@@ -23,6 +23,7 @@ export async function GET(request: NextRequest, { params }: any) {
     let totalCount
     if(!isAdmin){
       jobs = await Jobs.find({approved:true})
+        .select('_id role company location department url submittedDate thumbnailurl')
         .skip((skipPage-1) * skip)
         .limit(limit);
       totalCount = await Jobs.countDocuments({approved:true});

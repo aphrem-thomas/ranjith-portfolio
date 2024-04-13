@@ -16,6 +16,13 @@ const JobCard = (props:any)=>{
                             <span>{props.footer}</span>
                         </div>
                     </div>
+                    <div className="datesubmitted text-sm">{props.submittedDate}</div>
+                    {props.submitterEmail&&props.submitterName&&
+                    <div className="subhead w-32 flex-col text-sm rounded-md items-center justify-center overflow-hidden">
+                        <div>by:<span>{props.footer}</span></div>
+                        <div>Email:<span>{props.footer}</span></div>
+                    </div>       
+                    }
                 </div>
             </div>
             <div className="readmore hidden md:flex  w-40 justify-center items-center">

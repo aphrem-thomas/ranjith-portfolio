@@ -46,7 +46,7 @@ function Jobs() {
           {jobList.map((item: any) => {
             return (
               <div key={item._id} className="flex items-center w-full">
-              <a className="w-full h-32" href={item.url} target="_blank">
+              <a className="w-full h-40" href={item.url} target="_blank">
                 <JobCard
                   bgColor="bg-white"
                   thumbnail={item.thumbnailurl}
@@ -54,6 +54,9 @@ function Jobs() {
                   subheading={item.company}
                   location={item.location}
                   footer={item.department}
+                  submitterName={item.submitter}
+                  submitterEmail={item.submitter_email}
+                  submittedDate={`${item.submittedDate.split('T')[0]}` }
                   link={item.url}
                 />
               </a>

@@ -56,7 +56,7 @@ function Contacts() {
     }
     return (
         <>
-        <div className="contactsMain flex  items-center md:content-centre md:max-w-5xl">
+        <div className="contactsMain flex min-h-screen md:mt-20 md:content-centre md:max-w-5xl">
             <div className="flex flex-col md:flex-row">
             <div className="disclaimer p-10 md:p-0 md:max-w-5xl">
                 <div>Submit the form for</div>

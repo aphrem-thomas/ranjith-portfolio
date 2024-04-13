@@ -10,7 +10,7 @@ function Addjob() {
 
     const [url, setUrl] = useState('')
     const [company, setCompany] = useState('')
-    const [domain, setDomain] = useState('')
+    const [domain, setDomain] = useState('onsite')
     const [thumbnail, setThumbnail] = useState('')
     const [location, setLocation] = useState<any>('')
     const [role, setRole] = useState<any>('')
@@ -64,7 +64,7 @@ function Addjob() {
     }
     return (
         <>
-        <div className="contactsMain p-4 w-full flex flex-col md:max-w-5xl">
+        <div className="contactsMain p-4 w-full flex flex-col md:max-w-5xl min-h-screen">
             <div className="description mb-2">
                 The Job listing that you submit will be published after review.
             </div>
