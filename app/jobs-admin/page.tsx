@@ -11,7 +11,7 @@ function getJobData() {
 function Jobs() {
   const [jobList, setJobList] = useState([]);
   useEffect(()=>{
-    fetch(process.env.NEXT_PUBLIC_URL+'/api/jobs?page=1').then((res)=>{
+    fetch('api/jobs?page=1').then((res)=>{
       res.json().then(data=>{
         setJobList(data.jobs)
       })
@@ -19,19 +19,19 @@ function Jobs() {
   },[])
 
   function deleteJob(id:string) {
-    fetch(process.env.NEXT_PUBLIC_URL+`/api/jobs/?id=${id}`,{ method:'DELETE', cache: 'no-store' }).then(()=>{
+    fetch(`api/jobs/?id=${id}`,{ method:'DELETE', cache: 'no-store' }).then(()=>{
       getJobData().then((data:any)=>setJobList(data.jobs))
     })
   }
 
   function approve(id:string) {
-    fetch(process.env.NEXT_PUBLIC_URL+`/api/jobs?id=${id}&approve=${true}`,{ method:'PUT', cache: 'no-store' }).then(()=>{
+    fetch(`api/jobs?id=${id}&approve=${true}`,{ method:'PUT', cache: 'no-store' }).then(()=>{
       getJobData().then((data:any)=>setJobList(data.jobs))
     })
   }
 
   function forbid(id:string) {
-    fetch(process.env.NEXT_PUBLIC_URL+`/api/jobs?id=${id}&approve=${false}`,{ method:'PUT', cache: 'no-store' }).then(()=>{
+    fetch(`api/jobs?id=${id}&approve=${false}`,{ method:'PUT', cache: 'no-store' }).then(()=>{
       getJobData().then((data:any)=>setJobList(data.jobs))
     })
   }
