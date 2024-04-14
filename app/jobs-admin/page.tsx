@@ -3,7 +3,7 @@
 import JobCard from "@/components/JobCard/JobCard";
 import { useEffect, useState } from "react";
 function getJobData() {
-    return fetch(process.env.NEXT_PUBLIC_URL+'/api/jobs?page=1').then((res)=>{
+    return fetch('api/jobs?page=1').then((res)=>{
       return res.json()
     })
 }
