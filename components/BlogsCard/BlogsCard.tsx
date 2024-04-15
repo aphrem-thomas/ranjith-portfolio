@@ -9,7 +9,7 @@ const BlogsCard = (props:any)=>{
                     
                 </div>
             </div>
-            <div className="thumbnailImage bg-black-light w-1/4">
+            <div className="thumbnailImage bg-black-light w-1/4 ml-2">
                 <img className="h-full w-full object-cover"src={props.blog.thumbnail}/>
             </div>
             {props.blog.isVerfied!==undefined && props.blog.isVerfied== false && <div className="vefiyButton bg-hazard w-10">

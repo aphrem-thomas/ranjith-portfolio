@@ -13,7 +13,7 @@ const anton = Anton({
 export default function Home() {
   return (
    <div className={`parent scroll-smooth flex w-full flex-col items-center md:max-w-5xl`}>
-      <div className="flex flex-col items-center justify-center md:h-[calc(100vh-7rem)]">
+      <div className="flex relative flex-col items-center justify-center md:h-[calc(100vh-7rem)]">
         <div className="picAndText flex items-center w-full flex-col">
           {/* <div className="hello text-8xl mb-10 flex flex-col md:hidden">
             <div className={`text-text ${anton.className} tracking-[13px]`}>
@@ -41,7 +41,7 @@ export default function Home() {
           </div>
           </div>
         </div>
-        <span className="absolute bottom-0 hidden md:flex h-10 w-10 animate-bounce">
+        <span className="absolute left-0 bottom-0 hidden md:flex h-10 w-10 animate-bounce">
            <a href="#work_banner"><img src="/arrow.png" className="rotate-90 h-10 w-10 rounded-full text-background text-center text-4xl"/></a> 
         </span>
       </div>

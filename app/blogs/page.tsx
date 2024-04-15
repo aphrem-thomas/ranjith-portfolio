@@ -172,7 +172,7 @@ function Blogs(props: any) {
 
           {showModal && (
             <div className="formModal w-full z-40 bg-white/80 fixed left-0 top-0 justify-center p-4 h-full flex items-center">
-              <div className="bg-background-1 w-full p-10 rounded shadow">
+              <div className="bg-background-1 w-full md:max-w-lg p-10 rounded shadow">
                 <div className="nameAndEmail">
                   <div className="mb-2">
                     <label className="block text-gray-700 text-sm font-bold">
@@ -245,6 +245,9 @@ function Blogs(props: any) {
                     id="article"
                     type="file"
                   />
+                  <p className="text-red-500 text-xs italic">
+                      Only use Markdown files (.md) 
+                  </p>
                 </div>
                 <div className="mb-2">
                   <label className="block text-gray-700 text-sm font-bold mb-2">
