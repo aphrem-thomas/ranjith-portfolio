@@ -12,7 +12,7 @@ const anton = Anton({
 })
 
 async function getEventData() {
-  const res = await fetch(process.env.NEXT_PUBLIC_URL+`/api/events?page=1`,{ cache: "no-cache"});
+  const res = await fetch(`/api/events?page=1`,{ cache: "no-cache"});
   if (!res.ok) {
       throw new Error('Failed to fetch data')
   }
