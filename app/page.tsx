@@ -23,7 +23,7 @@ async function getEventData() {
 
 
 
-export default async function Home() {
+async function Home() {
   const data = await getEventData();
   return (
    <div className={`parent scroll-smooth flex w-full flex-col items-center md:max-w-5xl`}>
@@ -64,3 +64,5 @@ export default async function Home() {
     </div>
   );
 }
+
+export default Home;
