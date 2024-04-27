@@ -20,6 +20,7 @@ function Events({events}:any) {
       <div className="banner w-full p-5 flex flex-col h-full">
         {events && events.length && events.slice(0,4).map((item:any) => (
           <JobCard
+          key={item._id}
           bgColor="bg-white"
           thumbnail={item.thumbnailurl}
           heading={item.name}
@@ -29,7 +30,7 @@ function Events({events}:any) {
           />
         ))}
       </div>
-      <div className="moreEvents text-center">
+      <div className="moreEvents text-center underline text-primary">
         <a href="/events">more events...</a>
       </div>
     </div>
