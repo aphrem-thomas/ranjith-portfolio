@@ -9,7 +9,6 @@ async function getJobData(id:string) {
         throw new Error('Failed to fetch data')
     }
    const data  = await res.json()
-   console.log("data",data);
    return data
 }
 
