@@ -12,19 +12,18 @@ const anton = Anton({
 })
 
 async function getEventData() {
+  let data = []
   const res = await fetch(process.env.NEXT_PUBLIC_URL+`/api/events?page=1`,{ cache: "no-cache"});
   console.log("response-->",res)
-  if (!res.ok) {
-      throw new Error('Failed to fetch data')
+  if(res.ok){
+    data  = await res.json()
   }
- const data  = await res.json()
- console.log("the data", data)
- return data.events
+  return data
 }
 
 
 
-async function Home() {
+async function Page() {
   const data = await getEventData();
   return (
    <div className={`parent scroll-smooth flex w-full flex-col items-center md:max-w-5xl`}>
@@ -66,4 +65,4 @@ async function Home() {
   );
 }
 
-export default Home;
+export default Page;
