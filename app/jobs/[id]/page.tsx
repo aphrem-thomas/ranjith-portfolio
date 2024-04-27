@@ -4,12 +4,12 @@ import Link from "next/link";
 import Image from 'next/image'
 
 async function getJobData(id:string) {
-    const res = await fetch(process.env.NEXT_PUBLIC_URL+`/api/jobs?page=${id}`,{ cache: "no-cache"});
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
-    }
-   const data  = await res.json()
-   return data
+  let data = [];
+  const res = await fetch(process.env.NEXT_PUBLIC_URL+`/api/jobs?page=${id}`,{ cache: "no-cache"});
+  if(res.ok){
+    data  = await res.json()
+  }
+  return data
 }
 
 
