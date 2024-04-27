@@ -20,7 +20,7 @@ function Footer () {
                     </div>
                 </div>
                 <div className="sitedeveloper flex mt-4 ">
-                    <div className="dev text-xs h-8 md:text-sm underline">Developed by, <a target="_blank" href="https://www.linkedin.com/in/aphremthomas/">Aphrem Thomas</a></div>
+                    <div className="dev text-sm h-8 md:text-md underline">Developed by, <a target="_blank" href="https://www.linkedin.com/in/aphremthomas/">Aphrem Thomas</a></div>
                 </div>
             </div>
         </div>

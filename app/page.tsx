@@ -2,7 +2,9 @@ import Navbar from '@/components/navbar/navbar'
 import WorkBanner from '@/components/workBanner/workbanner'
 import Image from 'next/image'
 import {Anton} from 'next/font/google'
-import Events from '@/components/events/events'
+import Events from './model/events.modle'
+import { connect } from './config/db.config'
+import  EventComponent from '@/components/events/events'
 
 
 const anton = Anton({
@@ -12,13 +14,11 @@ const anton = Anton({
 })
 
 async function getEventData() {
-  let data = []
-  const res = await fetch(process.env.NEXT_PUBLIC_URL+`/api/events?page=1`,{ cache: "no-cache"});
-  console.log("response-->",res)
-  if(res.ok){
-    data  = await res.json()
-  }
-  return data
+  connect();
+  const events = await Events.find({approved:true})
+    .select('_id name location url submittedDate thumbnailurl')
+    .limit(4);
+  return events;
 }
 
 
@@ -29,14 +29,6 @@ async function Page() {
    <div className={`parent scroll-smooth flex w-full flex-col items-center md:max-w-5xl`}>
       <div className="flex relative flex-col items-center justify-center md:h-[calc(100vh-7rem)]">
         <div className="picAndText flex items-center w-full flex-col">
-          {/* <div className="hello text-8xl mb-10 flex flex-col md:hidden">
-            <div className={`text-text ${anton.className} tracking-[13px]`}>
-              RANJITH
-            </div>
-            <div className={`text-text ${anton.className} tracking-[7px]`}>
-              MATHEW
-            </div>
-          </div> */}
           
           <div className="intro mt-2 md:mt-2 flex flex-col-reverse md:flex-row justify-center items-center relative">
             <div className="statement flex-col p-4 md:w-2/3 text-xl text-justify">
@@ -60,7 +52,7 @@ async function Page() {
         </span>
       </div>
       <WorkBanner/>
-      <Events events={data}/>
+      <EventComponent events={data}/>
     </div>
   );
 }

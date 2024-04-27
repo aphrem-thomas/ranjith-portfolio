@@ -19,20 +19,22 @@ function Events({events}:any) {
       </div>
       <div className="banner w-full p-5 flex flex-col h-full">
         {events && events.length && events.slice(0,4).map((item:any) => (
-          <JobCard
-          key={item._id}
-          bgColor="bg-white"
-          thumbnail={item.thumbnailurl}
-          heading={item.name}
-          location={item.location}
-          submittedDate={`${item.submittedDate.split('T')[0]}` }
-          link={item.url}
-          />
+          <a target="_blank" href={item.url} className="mt-2">
+              <JobCard
+              key={item._id}
+              bgColor="bg-white"
+              thumbnail={item.thumbnailurl}
+              heading={item.name}
+              location={item.location}
+              submittedDate={`${item.submittedDate.toString().split('T')[0]}` }
+              link={item.url}
+              />
+          </a>
         ))}
       </div>
-      <div className="moreEvents text-center underline text-primary">
+      {events.length>4 && <div className="moreEvents text-center underline text-primary">
         <a href="/events">more events...</a>
-      </div>
+      </div>}
     </div>
   );
 }
