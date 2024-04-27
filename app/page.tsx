@@ -2,6 +2,7 @@ import Navbar from '@/components/navbar/navbar'
 import WorkBanner from '@/components/workBanner/workbanner'
 import Image from 'next/image'
 import {Anton} from 'next/font/google'
+import Events from '@/components/events/events'
 
 
 const anton = Anton({
@@ -10,7 +11,20 @@ const anton = Anton({
   variable:'--anton-font'
 })
 
-export default function Home() {
+async function getEventData() {
+  const res = await fetch(process.env.NEXT_PUBLIC_URL+`/api/events?page=1`,{ cache: "no-cache"});
+  if (!res.ok) {
+      throw new Error('Failed to fetch data')
+  }
+ const data  = await res.json()
+ console.log("the data", data)
+ return data.events
+}
+
+
+
+export default async function Home() {
+  const data = await getEventData();
   return (
    <div className={`parent scroll-smooth flex w-full flex-col items-center md:max-w-5xl`}>
       <div className="flex relative flex-col items-center justify-center md:h-[calc(100vh-7rem)]">
@@ -46,6 +60,7 @@ export default function Home() {
         </span>
       </div>
       <WorkBanner/>
+      <Events events={data}/>
     </div>
   );
 }
