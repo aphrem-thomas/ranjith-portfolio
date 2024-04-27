@@ -19,9 +19,8 @@ function Events({events}:any) {
       </div>
       <div className="banner w-full p-5 flex flex-col h-full">
         {events && events.length && events.slice(0,4).map((item:any) => (
-          <a target="_blank" href={item.url} className="mt-2">
+          <a key={item._id} target="_blank" href={item.url} className="mt-2">
               <JobCard
-              key={item._id}
               bgColor="bg-white"
               thumbnail={item.thumbnailurl}
               heading={item.name}

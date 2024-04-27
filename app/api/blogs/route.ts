@@ -1,6 +1,7 @@
 
 import { connect } from "@/app/config/db.config";
 import { authenticate } from "@/app/helper/authenticate";
+import sendEmail from "@/app/helper/sendEmail";
 import Blogs from "@/app/model/blogs.model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -45,6 +46,14 @@ export async function POST(request:NextRequest){
         });
         let resp = await blog.save()
         if(resp){
+            const info = await sendEmail(
+                `Blog alert<${process.env.EMAIL}>`, // sender address
+                process.env.TOEMAIL??'', // list of receivers
+                `New blog added`, // Subject line
+                `by${username}:${email}`, // plain text body
+                "",
+                null,
+               );
             return NextResponse.json({ message: 'success' }, { status: 200 });
         }
     }catch(e:any){

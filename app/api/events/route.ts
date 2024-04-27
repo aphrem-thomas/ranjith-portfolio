@@ -3,6 +3,7 @@ import { authenticate } from "@/app/helper/authenticate";
 import { NextRequest, NextResponse } from "next/server";
 import { getLinkPreview, getPreviewFromContent } from "link-preview-js";
 import Events from "@/app/model/events.modle";
+import sendEmail from "@/app/helper/sendEmail";
 
 export async function GET(request: NextRequest, { params }: any) {
   connect();
@@ -22,7 +23,7 @@ export async function GET(request: NextRequest, { params }: any) {
     let events;
     let totalCount
     if(!isAdmin){
-        events = await Events.find({approved:true})
+        events = await Events.find({approved:true, submitted:{}})
         .select('_id name location url submittedDate thumbnailurl')
         .skip((skipPage-1) * skip)
         .limit(limit);
@@ -67,6 +68,14 @@ export async function POST(request: NextRequest) {
     });
     let resp = await event.save();
     if (resp) {
+        const info = await sendEmail(
+            `Event alert<${process.env.EMAIL}>`, // sender address
+            process.env.TOEMAIL??'', // list of receivers
+            `New event added`, // Subject line
+            `by${submitter}:${submitter_email}`, // plain text body
+            "",
+            null,
+           );
       return NextResponse.json({ message: "success" }, { status: 200 });
     }
   } catch (e: any) {
