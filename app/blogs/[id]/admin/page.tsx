@@ -4,9 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Playfair_Display } from 'next/font/google'
 import { redirect, useRouter } from "next/navigation";
-import { authenticate } from '@/app/helper/authenticate';
 import { useEffect, useState } from 'react';
-import { Router } from 'next/router';
 import AlertMessage from '@/components/alertMessage/AlertMessage';
 
 const Playfair = Playfair_Display({
