@@ -6,6 +6,7 @@ import { connect } from "@/app/config/db.config";
 import Jobs from "@/app/model/jobs.model";
 
 async function getJobData(id:string) {
+  'use server'
   connect();
   const jobs = await Jobs.find({approved:true})
     .select('_id role company location department url submittedDate thumbnailurl')

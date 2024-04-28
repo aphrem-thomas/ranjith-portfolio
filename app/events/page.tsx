@@ -66,7 +66,7 @@ function Events() {
       </a>
     </div>
       <div className="w-full md:container flex justify-center">
-        <div className="jobListings w-full md:w-4/6 md:container">
+        <div className="jobListings w-full md:w-4/6 md:container p-4">
           {eventList.map((item: any) => {
             return (
               <div key={item._id} className="flex items-center w-full">

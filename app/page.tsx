@@ -14,6 +14,7 @@ const anton = Anton({
 })
 
 async function getEventData() {
+  'use server'
   connect();
   const events = await Events.find({approved:true})
     .select('_id name location url submittedDate thumbnailurl')
