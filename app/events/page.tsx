@@ -57,7 +57,7 @@ function Events() {
   return (
     <>
     <div className="headerImage w-full top-0 left-0 absolute z-20">
-      <img className="h-48 w-full object-cover" src='/work.jpg'/>
+      <img className="h-48 w-full object-cover" src='/events.jpg'/>
     </div>
     <div className="bg-bg-jobs w-full min-h-screen flex flex-col items-center z-20">
     <div className="flex w-full h-24 justify-center items-center">
@@ -70,7 +70,7 @@ function Events() {
           {eventList.map((item: any) => {
             return (
               <div key={item._id} className="flex items-center w-full">
-              <a className="w-full h-40" href={item.url} target="_blank">
+              <a className="w-full mt-2" href={item.url} target="_blank">
                 <JobCard
                   bgColor="bg-white"
                   thumbnail={item.thumbnailurl}

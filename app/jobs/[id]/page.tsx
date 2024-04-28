@@ -2,22 +2,29 @@ import JobCard from "@/components/JobCard/JobCard";
 import { getPossibleInstrumentationHookFilenames } from "next/dist/build/utils";
 import Link from "next/link";
 import Image from 'next/image'
+import { connect } from "@/app/config/db.config";
+import Jobs from "@/app/model/jobs.model";
 
 async function getJobData(id:string) {
-  let data = [];
-  const res = await fetch(process.env.NEXT_PUBLIC_URL+`/api/jobs?page=${id}`,{ cache: "no-cache"});
-  if(res.ok){
-    data  = await res.json()
-  }
-  return data
+  connect();
+  const jobs = await Jobs.find({approved:true})
+    .select('_id role company location department url submittedDate thumbnailurl')
+    .skip((parseInt(id)-1) * 10)
+    .limit(10);
+  return jobs
+}
+
+async function getJobCount() {
+  connect();
+  const totalCount = await Jobs.countDocuments({approved:true});
+  return totalCount
 }
 
 
 
-async function Jobs({ params }: { params: { id: string } }) {
-  const data = await getJobData(params.id);
-  const jobList = data.jobs
-  const count = data.totalCount
+async function Page({ params }: { params: { id: string } }) {
+  const jobList = await getJobData(params.id);
+  const count = await getJobCount()
 
   const getLinks = (id:string)=>{
     let links=[];
@@ -54,7 +61,7 @@ async function Jobs({ params }: { params: { id: string } }) {
                   location={item.location}
                   footer={item.department}
                   link={item.url}
-                  submittedDate={`${item.submittedDate.split('T')[0]}` }
+                  submittedDate={`${item.submittedDate.toString().split('T')[0]}` }
                 />
               </a>
             );
@@ -72,4 +79,4 @@ async function Jobs({ params }: { params: { id: string } }) {
   );
 }
 
-export default Jobs;
+export default Page;

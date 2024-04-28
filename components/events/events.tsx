@@ -31,7 +31,7 @@ function Events({events}:any) {
           </a>
         ))}
       </div>
-      {events.length>4 && <div className="moreEvents text-center underline text-primary">
+      {events.length>3 && <div className="moreEvents text-center underline text-primary">
         <a href="/events">more events...</a>
       </div>}
     </div>

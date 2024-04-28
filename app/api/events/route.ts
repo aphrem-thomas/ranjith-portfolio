@@ -23,7 +23,7 @@ export async function GET(request: NextRequest, { params }: any) {
     let events;
     let totalCount
     if(!isAdmin){
-        events = await Events.find({approved:true, submitted:{}})
+        events = await Events.find({approved:true})
         .select('_id name location url submittedDate thumbnailurl')
         .skip((skipPage-1) * skip)
         .limit(limit);
