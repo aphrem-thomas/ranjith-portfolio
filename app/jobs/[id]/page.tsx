@@ -5,31 +5,14 @@ import Image from 'next/image'
 import { connect } from "@/app/config/db.config";
 import Jobs from "@/app/model/jobs.model";
 
-async function getJobData(id:string) {
-  "use server"
-  connect();
-  const jobs = await Jobs.find({approved:true})
-    .select('_id role company location department url submittedDate thumbnailurl')
-    .skip((parseInt(id)-1) * 10)
-    .limit(10);
-  return jobs
-}
-
-async function getJobCount() {
-  connect();
-  const totalCount = await Jobs.countDocuments({approved:true});
-  return totalCount
-}
-
-
 
 async function Page({ params }: { params: { id: string } }) {
-  const jobList = await getJobData(params.id);
-  const count = await getJobCount()
-
+  const jobList = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/jobs?page=${params.id}`);
+  const data = await jobList.json()
+  console.log("daas",data)
   const getLinks = (id:string)=>{
     let links=[];
-    for(let i=1; i<=(Math.ceil(count/10)); i++){
+    for(let i=1; i<=(Math.ceil(data.totalCount/10)); i++){
        links.push(<Link
         className={`w-4 h-6 ml-2 ${parseInt(id)===i?'bg-background-4':'bg-background-1'} inline-block align-middle text-center`}
         key={i}
@@ -51,7 +34,7 @@ async function Page({ params }: { params: { id: string } }) {
     </div>
       <div className=" w-full md:container flex flex-col justify-center items-center">
         <div className="jobListings min-h-[58vh] w-full md:w-4/6 flex flex-col items-center p-4">
-          {jobList.map((item: any) => {
+          {data.jobs.map((item: any) => {
             return (
               <a className="w-full h-32" key={item._id} href={item.url} target="_blank">
                 <JobCard

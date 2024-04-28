@@ -13,19 +13,11 @@ const anton = Anton({
   variable:'--anton-font'
 })
 
-async function getEventData() {
-  "use server"
-  connect();
-  const events = await Events.find({approved:true})
-    .select('_id name location url submittedDate thumbnailurl')
-    .limit(4);
-  return events;
-}
-
 
 
 async function Page() {
-  const data = await getEventData();
+  const data = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/events?page=1`);
+  const value = await data.json()
   return (
    <div className={`parent scroll-smooth flex w-full flex-col items-center md:max-w-5xl`}>
       <div className="flex relative flex-col items-center justify-center md:h-[calc(100vh-7rem)]">
@@ -53,7 +45,7 @@ async function Page() {
         </span>
       </div>
       <WorkBanner/>
-      <EventComponent events={data}/>
+      <EventComponent events={value.events}/>
     </div>
   );
 }
