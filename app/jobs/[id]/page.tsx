@@ -7,7 +7,7 @@ import Jobs from "@/app/model/jobs.model";
 
 
 async function Page({ params }: { params: { id: string } }) {
-  const jobList = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/jobs?page=${params.id}`);
+  const jobList = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/jobs?page=${params.id}`,{ cache: 'no-store' });
   const data = await jobList.json()
   console.log("daas",data)
   const getLinks = (id:string)=>{

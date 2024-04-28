@@ -16,7 +16,7 @@ const anton = Anton({
 
 
 async function Page() {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/events?page=1`);
+  const data = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/events?page=1`,{ cache: 'no-store' });
   const value = await data.json()
   return (
    <div className={`parent scroll-smooth flex w-full flex-col items-center md:max-w-5xl`}>
