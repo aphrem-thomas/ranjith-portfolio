@@ -50,7 +50,7 @@ function BlogPage({params:{id}}:{params:{id:string}}){
                     </button>
                 </div>
             </div>
-            <div className="container">
+            <div className="container p-2 text-wrap">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{data?.blogs?.text}</ReactMarkdown>
             </div>
         </div>

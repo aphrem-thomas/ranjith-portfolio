@@ -21,7 +21,7 @@ async function BlogPage({params:{id}}:{params:{id:string}}){
 
     return(
         <div id="BlogpageMainContainer" className={`BlogpageMain ${Playfair.className} flex flex-col items-center p-4 w-screen md:max-w-5xl`}>
-            <div className="container">
+            <div className="container p-2 text-wrap">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{data.blogs?.text}</ReactMarkdown>
             </div>
         </div>
