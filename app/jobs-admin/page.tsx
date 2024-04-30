@@ -1,39 +1,54 @@
 'use client'
 
 import JobCard from "@/components/JobCard/JobCard";
+import { count } from "console";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-function getJobData() {
-    return fetch('api/jobs?page=1').then((res)=>{
+function getJobData(i:number) {
+    return fetch(`api/jobs?page=${i}`).then((res)=>{
       return res.json()
     })
 }
 
 function Jobs() {
   const [jobList, setJobList] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [page, setPage] = useState(1);
+
   useEffect(()=>{
     fetch('api/jobs?page=1').then((res)=>{
       res.json().then(data=>{
         setJobList(data.jobs)
+        setTotalCount(data.totalCount)
       })
     })
   },[])
 
   function deleteJob(id:string) {
     fetch(`api/jobs/?id=${id}`,{ method:'DELETE', cache: 'no-store' }).then(()=>{
-      getJobData().then((data:any)=>setJobList(data.jobs))
+      getJobData(page).then((data:any)=>setJobList(data.jobs))
     })
   }
 
   function approve(id:string) {
     fetch(`api/jobs?id=${id}&approve=${true}`,{ method:'PUT', cache: 'no-store' }).then(()=>{
-      getJobData().then((data:any)=>setJobList(data.jobs))
+      getJobData(page).then((data:any)=>setJobList(data.jobs))
     })
   }
 
   function forbid(id:string) {
     fetch(`api/jobs?id=${id}&approve=${false}`,{ method:'PUT', cache: 'no-store' }).then(()=>{
-      getJobData().then((data:any)=>setJobList(data.jobs))
+      getJobData(page).then((data:any)=>setJobList(data.jobs))
     })
+  }
+
+  const getLinks = (id:string, count:number)=>{
+    return <>{ [...Array(Math.ceil(count/10)).keys()].map(i=>
+      <button
+       className={`w-4 h-6 ml-2 ${parseInt(id)===i+1?'bg-background-4':'bg-background-1'} inline-block align-middle text-center`}
+       key={i}
+       onClick={()=>{getJobData(i+1).then((data:any)=>setJobList(data.jobs));setPage(i+1)}}>{i+1}</button>)
+    }</>
   }
   return (
     <>
@@ -68,6 +83,11 @@ function Jobs() {
               </div>
             );
           })}
+        </div>
+      </div>
+      <div className="footerNav container mt-10 h-20 w-full flex items-center justify-center">
+        <div className="pagination">
+          {totalCount && getLinks(page.toString(),totalCount)}
         </div>
       </div>
     </div>
