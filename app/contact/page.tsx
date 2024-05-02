@@ -64,7 +64,7 @@ function Contacts() {
                 <div className="disclaimerMessage mt-5 leading-6">
                 <p>In the role of Technical Resource Manager, primary responsibilities involve, overseeing account management, generating new sales leads and identifying top technical talent, especially for software and hardware development companies across North America. Leveraging exceptional networking abilities and relationship-building talent, excellence is achieved in client engagement and assisting them in building successful teams.</p>
                 <br/>
-                <p className="text font-bold">Discalimer</p>
+                <p className="text font-bold">Disclaimer</p>
                 <p className="text text-sm italic">Please note that by submitting your resume for a free 15-minute consulting session, you consent to the collection and use of your personal information solely for the purpose of providing career guidance and employment assistance. Your information will be treated confidentially and will not be shared with any third parties without your explicit consent.</p>
             </div>
             </div>
