@@ -19,6 +19,7 @@ function BlogPage({params:{id}}:{params:{id:string}}){
     const [alert, showAlert] = useState(false)
     const router = useRouter();
     useEffect(()=>{ 
+        console.log("in blogs useffect")
         getBlogData(id)     
     },[])
     function getBlogData(id:string){
