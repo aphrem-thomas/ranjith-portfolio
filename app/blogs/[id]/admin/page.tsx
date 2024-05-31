@@ -22,7 +22,7 @@ function BlogPage({params:{id}}:{params:{id:string}}){
         getBlogData(id)     
     },[])
     function getBlogData(id:string){
-        fetch(process.env.NEXT_PUBLIC_URL+`/api/blogs/${id}`,{ cache: 'no-store' }).then((res)=>{
+        fetch(`/api/blogs/${id}`,{ cache: 'no-store' }).then((res)=>{
             res.json().then((result)=>{
                 setData(result);
             })

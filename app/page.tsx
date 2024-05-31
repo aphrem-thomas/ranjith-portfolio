@@ -75,7 +75,7 @@ async function Page() {
         </span>
       </div>
       <WorkBanner />
-      <EventComponent events={value.events} />
+      {value.events.lenght && <EventComponent events={value.events} />}
     </div>
   );
 }

@@ -69,24 +69,25 @@ function Contacts() {
             </h1>
             <div className="disclaimerMessage mt-5 leading-6">
               <p>
-                Throughout my career, I have assisted over 1,000 new
-                graduates and newcomers in Ottawa in finding job opportunities
-                in the business and IT security industries. My proficiency in
-                community outreach and stakeholder development enables him to
-                build new collaborations, driving solutions for nonprofits and
-                business leaders alike. Ranjith wishes to be your #networKING,
-                passionately connecting people in a world where uncompromised
-                digital trust is essential.
-                </p>
-                <p>
-                Iam currently a Technical
-                Resource Manager, my main duties include overseeing account
-                management, creating new hiring opportunities, and identifying
-                top technical talent, particularly for software and hardware
-                development companies across North America. By leveraging my
-                exceptional networking skills and talent for building
-                relationships, I excels in client engagement and helps clients
-                build successful teams.
+                Throughout my career, I have assisted over 1,000 new graduates
+                and newcomers in Ottawa in finding job opportunities in the
+                business and IT security industries. My proficiency in community
+                outreach and stakeholder development enables me to build new
+                collaborations, driving solutions for nonprofits and business
+                leaders alike. Close contacts often whisper about me as the
+                #networKING, however my goal is to be your connector,
+                facilitating the achievement of both organizational and personal
+                goals for everyone involved in the conversation.
+              </p>
+              <br/>
+              <p>
+                In my current position as Technical Resource Manager, my main
+                duties include overseeing account management, creating new
+                hiring opportunities, and identifying top technical talent,
+                particularly for software and hardware development companies
+                across North America. By leveraging my exceptional networking
+                skills and talent for building relationships, I excel in client
+                engagement and help clients build successful teams.
               </p>
               <br />
               <p className="text font-bold">Disclaimer</p>
