@@ -45,3 +45,25 @@ export async function POST(request:NextRequest, {params}:{params:{id:string}}){
         return NextResponse.json({message:e.message},{status:500})
     }
 }
+
+export async function DELETE(request:NextRequest, {params}:{params:{id:string}}){
+    connect()
+    const {id} = params
+    const {searchParams} = new URL(request.url);
+    try{
+        const isAdmin = await authenticate(request)
+        let blogs;
+        if(isAdmin){
+            try{
+                blogs = await Blogs.deleteOne({_id:id});
+            }catch(e:any){
+                return NextResponse.json({message:e.message},{status:500})
+            }
+        }else{
+            return NextResponse.json({message:'unauthoriesd'},{status:400})
+        }
+        return NextResponse.json({blogs},{status:200})
+    }catch(e:any){
+        return NextResponse.json({message:e.message},{status:500})
+    }
+}

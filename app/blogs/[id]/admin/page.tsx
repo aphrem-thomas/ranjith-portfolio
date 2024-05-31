@@ -39,6 +39,17 @@ function BlogPage({params:{id}}:{params:{id:string}}){
             }
         }) 
     }
+    const deleteBlog = (id:string)=> {
+        fetch(process.env.NEXT_PUBLIC_URL+`/api/blogs/${id}`,{ method:'DELETE', cache: 'no-store' }).then((res)=>{
+            if(res.ok){
+                router.push(`/blogs/`)
+                getBlogData(id)
+            } else {
+                showAlert(true)
+                router.push(`/blogs/${id}`)
+            }
+        }) 
+    }
     return(
         <>
         <div id="BlogpageMainContainer" className={`BlogpageMain ${Playfair.className} flex flex-col items-center bg-white w-screen`}>
@@ -46,6 +57,11 @@ function BlogPage({params:{id}}:{params:{id:string}}){
                 <div className="approveContainer container p-5 float-right">
                     <button onClick={()=>approveBlog(id,!data?.blogs?.isVerfied)} className='w-40 bg-accent float-right text-xl text-white font-bold py-2 px-4 rounded'>
                     {data?.blogs?.isVerfied?'Reject':'Approve'}
+                    </button>
+                </div>
+                <div className="approveContainer container p-5 float-right">
+                    <button onClick={()=>deleteBlog(id)} className='w-40 bg-hazard float-right text-xl text-white font-bold py-2 px-4 rounded'>
+                    Delete
                     </button>
                 </div>
             </div>
