@@ -8,9 +8,6 @@ function Footer () {
             <div className="rmfootercontact flex flex-col items-center justify-center md:justify-between w-full md:max-w-5xl">
                 <div className='flex items-center w-full md:max-w-5xl'>
                     <div className="basiccontact w-full">
-                        <div className="text-xm">Ranjith Mathew</div>
-                        <div className="text-xs">Director</div>
-                        <div className="text-xs">rm@gmail.com</div>
                     </div>
                     <div className="socialmedia ml-10 flex w-full justify-end">
                         <a target="_blank" href='https://www.facebook.com/ranjithmathew.ca'><img className="h-8 ml-2" src="/icons/facebook.png"></img></a>
