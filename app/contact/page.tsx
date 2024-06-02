@@ -79,7 +79,7 @@ function Contacts() {
                 facilitating the achievement of both organizational and personal
                 goals for everyone involved in the conversation.
               </p>
-              <br/>
+              <br />
               <p>
                 In my current position as Technical Resource Manager, my main
                 duties include overseeing account management, creating new
@@ -102,92 +102,94 @@ function Contacts() {
             </div>
           </div>
           <div className="contactForm md:container md:flex md:justify-center md:ml-10">
-            <div className="md:w-[30rem]">
-              <div className="bg-background-1 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    First name
-                  </label>
-                  <input
-                    value={firstname}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="name"
-                    type="text"
-                    placeholder="John"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Last name
-                  </label>
-                  <input
-                    value={lastname}
-                    onChange={(e) => setLastName(e.target.value)}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="name"
-                    type="text"
-                    placeholder="Denver"
-                  />
-                </div>
-                <div className="mb-6">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Email
-                  </label>
-                  <input
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="email"
-                    type="text"
-                    placeholder="john@gmail.com"
-                  />
-                  <p className="text-red-500 text-xs italic">
-                    Please enter email.
-                  </p>
-                </div>
-                <div className="mb-6">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                  />
-                  <p className="text-red-500 text-xs italic">
-                    Enter description
-                  </p>
-                </div>
-                <div className="mb-6">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Resume
-                  </label>
-                  <input
-                    onChange={(e) => {
-                      if (e.target.files?.length) {
-                        setResume(e.target.files[0]);
-                      }
-                    }}
-                    accept=".pdf"
-                    className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="resume"
-                    type="file"
-                  />
-                  <p className="text-red-500 text-xs italic">
-                    Please attach resume in pdf.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between">
-                  <button
-                    onClick={handleSubmit}
-                    className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Submit
-                  </button>
+            <form autoComplete="off">
+              <div className="md:w-[30rem]">
+                <div className="bg-background-1 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                  <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                      First name
+                    </label>
+                    <input
+                      value={firstname}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="name"
+                      type="text"
+                      placeholder="John"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                      Last name
+                    </label>
+                    <input
+                      value={lastname}
+                      onChange={(e) => setLastName(e.target.value)}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="name"
+                      type="text"
+                      placeholder="Denver"
+                    />
+                  </div>
+                  <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                      Email
+                    </label>
+                    <input
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                      id="email"
+                      type="text"
+                      placeholder="john@gmail.com"
+                    />
+                    <p className="text-red-500 text-xs italic">
+                      Please enter email.
+                    </p>
+                  </div>
+                  <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                    <p className="text-red-500 text-xs italic">
+                      Enter description
+                    </p>
+                  </div>
+                  <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                      Resume
+                    </label>
+                    <input
+                      onChange={(e) => {
+                        if (e.target.files?.length) {
+                          setResume(e.target.files[0]);
+                        }
+                      }}
+                      accept=".pdf"
+                      className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                      id="resume"
+                      type="file"
+                    />
+                    <p className="text-red-500 text-xs italic">
+                      Please attach resume in pdf.
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <button
+                      onClick={handleSubmit}
+                      className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    >
+                      Submit
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

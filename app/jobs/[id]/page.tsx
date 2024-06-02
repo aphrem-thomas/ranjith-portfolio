@@ -33,7 +33,7 @@ async function Page({ params }: { params: { id: string } }) {
     </div>
       <div className=" w-full md:container flex flex-col justify-center items-center">
         <div className="jobListings min-h-[58vh] w-full md:w-4/6 flex flex-col items-center p-4">
-          {data.jobs.map((item: any) => {
+          {data.jobs.length? data.jobs.map((item: any) => {
             return (
               <a className="w-full h-32" key={item._id} href={item.url} target="_blank">
                 <JobCard
@@ -48,7 +48,7 @@ async function Page({ params }: { params: { id: string } }) {
                 />
               </a>
             );
-          })}
+          }):"No jobs listed"}
         </div>
         <div className="sidebar w-2/6"></div>
       </div>
