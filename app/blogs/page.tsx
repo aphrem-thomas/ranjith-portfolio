@@ -8,6 +8,7 @@ import { data } from "autoprefixer";
 
 function Blogs(props: any) {
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const [tags, setTags] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,7 +25,9 @@ function Blogs(props: any) {
   const router = useRouter();
 
   useEffect(() => {
+    setLoading(true)
     fetch("/api/blogs").then((res) => {
+      setLoading(false)
       res.json().then((data) => {
         setBlogs(data.blogs);
       });
@@ -99,6 +102,9 @@ function Blogs(props: any) {
   function clickBlog(id: string) {
     router.push(`/blogs/${id}`);
   }
+function getNotice(text:string){
+  return <div className="h-40 text-center w-full flex justify-center items-center"><span>{text}</span></div>
+}
 
   function processArticle(mdfile: any) {
     let fr = new FileReader();
@@ -157,7 +163,8 @@ function Blogs(props: any) {
             </div>
           </div>
           <div className="showblogs w-full flex flex-col p-2 mt-4">
-            {blogs && !!blogs.length ? (
+            {!loading ? (
+              blogs.length?
               blogs
                 .filter((blog: any) =>
                   !selected ? true : blog.tags.includes(selected)
@@ -171,9 +178,9 @@ function Blogs(props: any) {
                       selectBlog={clickBlog}
                     />
                   );
-                })
+                }):getNotice("No Blogs listed")
             ) : (
-              <div>Loading...</div>
+              <div>{getNotice("Loading...")}</div>
             )}
           </div>
 

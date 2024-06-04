@@ -23,13 +23,19 @@ const getLinks = (id:string, count:number)=>{
   )
 }
 
+function getNotice(text:string){
+  return <div className="h-40 text-center w-full flex justify-center items-center"><span>{text}</span></div>
+}
 
 function Events() {
   const [eventList, setEventList] = useState([]);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
   useEffect(()=>{
+    setLoading(true)
     fetch('api/events?page=1').then((res:any)=>{
+      setLoading(false)
       res.json().then((data: { events: SetStateAction<never[]>; totalCount: SetStateAction<number>; })=>{
         setEventList(data.events)
         setCount(data.totalCount)
@@ -67,7 +73,7 @@ function Events() {
     </div>
       <div className="w-full md:container flex justify-center">
         <div className="jobListings w-full md:w-4/6 md:container p-4">
-          {eventList.map((item: any) => {
+          {!loading?eventList.length?eventList.map((item: any) => {
             return (
               <div key={item._id} className="flex items-center w-full">
               <a className="w-full mt-2" href={item.url} target="_blank">
@@ -89,7 +95,7 @@ function Events() {
               </div>}
               </div>
             );
-          })}
+          }):getNotice("No events listed"):getNotice("Loading...")}
         </div>
       </div>
       <div className="footerNav container mt-10 h-20 w-full flex items-center justify-center">
