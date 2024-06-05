@@ -1,9 +1,12 @@
+import { connect } from '@/app/config/db.config';
 import transporter from '@/app/config/mailer';
 import sendEmail from '@/app/helper/sendEmail';
+import Contacts from '@/app/model/contact.model';
 import arrayBufferToBuffer from 'arraybuffer-to-buffer'
 import { NextRequest } from "next/server";
 
 export async function POST(request:NextRequest,response:Response){
+    connect();
     const dat = await request.formData()
     let files:any = await dat.get('resume');
     const EMAIL = process.env.EMAIL
@@ -26,5 +29,14 @@ export async function POST(request:NextRequest,response:Response){
                 contentType:'application/pdf'
             }
         ]);
+        try{
+            const event = new Contacts({
+                name:dat.get('name'),
+                email:dat.get('email')
+            });
+            let resp = await event.save();
+        }catch(e){
+            console.log(e)
+        }
     return new Response('done',{status:200})
 }
