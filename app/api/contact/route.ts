@@ -25,6 +25,7 @@ export async function POST(request:NextRequest,response:Response){
             </div>`,
         [
             { 
+                filename:dat.get('name'),
                 content:arrayBufferToBuffer(await files.arrayBuffer()),
                 contentType:'application/pdf'
             }
