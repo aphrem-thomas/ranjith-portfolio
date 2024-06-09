@@ -31,7 +31,7 @@ function Events() {
   const [eventList, setEventList] = useState([]);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(()=>{
     setLoading(true)
     fetch('api/events?page=1').then((res:any)=>{
@@ -39,6 +39,8 @@ function Events() {
       res.json().then((data: { events: SetStateAction<never[]>; totalCount: SetStateAction<number>; })=>{
         setEventList(data.events)
         setCount(data.totalCount)
+      }).catch(()=>{
+        setLoading(false)
       })
     })
   },[])

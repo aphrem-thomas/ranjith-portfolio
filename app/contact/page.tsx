@@ -13,7 +13,9 @@ function Contacts() {
   const [description, setDescription] = useState<any>("");
   const [alert, showAlert] = useState(false);
 
-  async function handleSubmit() {
+  async function handleSubmit(e:React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault()
+    console.log("data", firstname, lastname, email, resume, description)
     if (
       firstname === "" ||
       lastname === "" ||
@@ -27,7 +29,7 @@ function Contacts() {
       return;
     }
     const formData = new FormData();
-    console.log("data", firstname, lastname, email, resume, description);
+    
     formData.append("name", firstname + " " + lastname);
     formData.append("email", email);
     formData.append("resume", resume);
@@ -38,6 +40,7 @@ function Contacts() {
       cache: "no-cache",
       mode: "no-cors",
     });
+    console.log("response from contact",resp)
     if (resp.ok) {
       setType("success");
       setMessage("Successfully submitted your data");
@@ -170,7 +173,7 @@ function Contacts() {
                           setResume(e.target.files[0]);
                         }
                       }}
-                      accept=".pdf"
+                      accept=".pdf,.doc, .docx"
                       className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                       id="resume"
                       type="file"

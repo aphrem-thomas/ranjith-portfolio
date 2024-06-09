@@ -25,9 +25,8 @@ export async function POST(request:NextRequest,response:Response){
             </div>`,
         [
             { 
-                filename:dat.get('name'),
+                filename:files.name,
                 content:arrayBufferToBuffer(await files.arrayBuffer()),
-                contentType:'application/pdf'
             }
         ]);
         try{
@@ -39,5 +38,10 @@ export async function POST(request:NextRequest,response:Response){
         }catch(e){
             console.log(e)
         }
-    return new Response('done',{status:200})
+    if(info.messageId){
+        return new Response('done',{status:200})
+    }
+    else{
+        return new Response('error',{status:500})
+    }
 }
