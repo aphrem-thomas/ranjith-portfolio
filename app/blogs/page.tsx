@@ -56,7 +56,8 @@ function Blogs(props: any) {
     setHeading("");
     setSubheading("");
   }
-  async function handleSubmit() {
+  async function handleSubmit(e:React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault()
     if (
       name === "" ||
       email === "" ||
@@ -67,6 +68,7 @@ function Blogs(props: any) {
     ) {
       setType("error");
       setMessage("Please fill all fields");
+      showModalSet(false);
       showAlert(true);
       return;
     }
@@ -192,6 +194,7 @@ function getNotice(text:string){
                     <div className="mb-2">
                       <label className="block text-gray-700 text-sm font-bold">
                         Full Name
+                        <span className="star text-hazard">*</span>
                       </label>
                       <input
                         value={name}
@@ -205,6 +208,7 @@ function getNotice(text:string){
                     <div className="mb-2">
                       <label className="block text-gray-700 text-sm font-bold">
                         Email
+                        <span className="star text-hazard">*</span>
                       </label>
                       <input
                         value={email}
@@ -222,6 +226,7 @@ function getNotice(text:string){
                   <div className="mb-2">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       Heading
+                      <span className="star text-hazard">*</span>
                     </label>
                     <input
                       value={heading}
@@ -235,6 +240,7 @@ function getNotice(text:string){
                   <div className="mb-2">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       Sub Heading
+                      <span className="star text-hazard">*</span>
                     </label>
                     <input
                       value={subHeading}
@@ -248,6 +254,7 @@ function getNotice(text:string){
                   <div className="mb-2">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       Article
+                      <span className="star text-hazard">*</span>
                     </label>
                     <input
                       onChange={(e) => {
@@ -267,6 +274,7 @@ function getNotice(text:string){
                   <div className="mb-2">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       Thumbnail url
+                      <span className="star text-hazard">*</span>
                     </label>
                     <input
                       value={thumbnail}
@@ -274,12 +282,13 @@ function getNotice(text:string){
                       className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline"
                     />
                     <p className="text-red-500 text-xs italic">
-                      Enter Url of royaltee free image
+                      Enter Url of royaltee free Image
                     </p>
                   </div>
                   <div className="mb-2">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       Tags
+                      <span className="star text-hazard">*</span>
                     </label>
                     <input
                       value={tags}

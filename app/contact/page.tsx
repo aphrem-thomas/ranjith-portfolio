@@ -15,7 +15,6 @@ function Contacts() {
 
   async function handleSubmit(e:React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
-    console.log("data", firstname, lastname, email, resume, description)
     if (
       firstname === "" ||
       lastname === "" ||
@@ -40,7 +39,6 @@ function Contacts() {
       cache: "no-cache",
       mode: "no-cors",
     });
-    console.log("response from contact",resp)
     if (resp.ok) {
       setType("success");
       setMessage("Successfully submitted your data");
@@ -111,6 +109,7 @@ function Contacts() {
                   <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       First name
+                      <span className="star text-hazard">*</span>
                     </label>
                     <input
                       value={firstname}
@@ -124,6 +123,7 @@ function Contacts() {
                   <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       Last name
+                      <span className="star text-hazard">*</span>
                     </label>
                     <input
                       value={lastname}
@@ -137,6 +137,7 @@ function Contacts() {
                   <div className="mb-6">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       Email
+                      <span className="star text-hazard">*</span>
                     </label>
                     <input
                       value={email}
@@ -153,6 +154,7 @@ function Contacts() {
                   <div className="mb-6">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       Message
+                      <span className="star text-hazard">*</span>
                     </label>
                     <textarea
                       value={description}
@@ -166,6 +168,7 @@ function Contacts() {
                   <div className="mb-6">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       Resume
+                      <span className="star text-hazard">*</span>
                     </label>
                     <input
                       onChange={(e) => {
@@ -179,7 +182,7 @@ function Contacts() {
                       type="file"
                     />
                     <p className="text-red-500 text-xs italic">
-                      Please attach resume in pdf.
+                      Please attach resume in pdf or doc format.
                     </p>
                   </div>
                   <div className="flex items-center justify-between">
