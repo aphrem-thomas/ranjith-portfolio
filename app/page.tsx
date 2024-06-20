@@ -75,6 +75,12 @@ async function Page() {
         </span>
       </div>
       <WorkBanner />
+      <div className="p-10 h-auto w-full md:w-1/2">
+        <div className="aspect-w-16 aspect-h-9">
+          <iframe src="https://www.youtube.com/embed/OC3srxxZtTM"> 
+          </iframe>
+        </div> 
+      </div>    
       {value.events.length && <EventComponent events={value.events} />}
     </div>
   );

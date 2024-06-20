@@ -52,5 +52,7 @@ module.exports = {
       'bg-jobs':'#f7fafc'
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ],
 }
