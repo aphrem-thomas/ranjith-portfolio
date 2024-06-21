@@ -25,6 +25,7 @@ export async function GET(request: NextRequest, { params }: any) {
     if(!isAdmin){
         events = await Events.find({approved:true})
         .select('_id name location url submittedDate thumbnailurl')
+        .sort([['submittedDate', 'descending']])
         .skip((skipPage-1) * skip)
         .limit(limit);
       totalCount = await Events.countDocuments({approved:true});

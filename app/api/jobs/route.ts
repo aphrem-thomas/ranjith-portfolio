@@ -24,6 +24,7 @@ export async function GET(request: NextRequest, { params }: any) {
     if(!isAdmin){
       jobs = await Jobs.find({approved:true})
         .select('_id role company location department url submittedDate thumbnailurl')
+        .sort([['submittedDate', 'descending']])
         .skip((skipPage-1) * skip)
         .limit(limit);
       totalCount = await Jobs.countDocuments({approved:true});
