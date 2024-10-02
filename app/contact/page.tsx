@@ -2,7 +2,7 @@
 
 import AlertMessage from "@/components/alertMessage/AlertMessage";
 import { useState } from "react";
-
+import Spinner from "@/components/spinner/spinner";
 function Contacts() {
   const [message, setMessage] = useState("");
   const [type, setType] = useState("");
@@ -12,9 +12,11 @@ function Contacts() {
   const [resume, setResume] = useState<any>("");
   const [description, setDescription] = useState<any>("");
   const [alert, showAlert] = useState(false);
+  const [submittingState, setSubmittingState] = useState(false);
 
   async function handleSubmit(e:React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
+    setSubmittingState(true)
     if (
       firstname === "" ||
       lastname === "" ||
@@ -25,6 +27,7 @@ function Contacts() {
       setType("error");
       setMessage("Please fill all fields");
       showAlert(true);
+      setSubmittingState(false)
       return;
     }
     const formData = new FormData();
@@ -48,6 +51,7 @@ function Contacts() {
       setFirstName("");
       setLastName("");
       setResume("");
+      setSubmittingState(false)
     } else {
       setType("error");
       setMessage("error in subimitting data");
@@ -57,7 +61,9 @@ function Contacts() {
       setFirstName("");
       setLastName("");
       setResume("");
+      setSubmittingState(false)
     }
+    setSubmittingState(false);
   }
   return (
     <>
@@ -186,12 +192,12 @@ function Contacts() {
                     </p>
                   </div>
                   <div className="flex items-center justify-between">
-                    <button
+                    {submittingState?<Spinner/>:<button
                       onClick={handleSubmit}
                       className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
                       Submit
-                    </button>
+                    </button>}
                   </div>
                 </div>
               </div>
