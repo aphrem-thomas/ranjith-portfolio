@@ -15,6 +15,7 @@ export async function GET(request:NextRequest){
         }else{
             blogs = await Blogs.find({isVerfied:true},'_id username email tags thumbnail submittedDate heading subheading').sort([['submittedDate', 'descending']]);
         }
+        console.log("blllogs", blogs)
         return NextResponse.json({blogs},{status:200})
     }catch(e:any){
         return NextResponse.json({message:e.message},{status:500})
@@ -45,6 +46,7 @@ export async function POST(request:NextRequest){
             subheading:subheading
         });
         let resp = await blog.save()
+        console.log("add blog response", resp)
         if(resp){
             const info = await sendEmail(
                 `Blog alert<${process.env.EMAIL}>`, // sender address
@@ -57,6 +59,7 @@ export async function POST(request:NextRequest){
             return NextResponse.json({ message: 'success' }, { status: 200 });
         }
     }catch(e:any){
+        console.log("error in adding blog", e)
         return NextResponse.json({message:e.message},{status:500})
     }
 }

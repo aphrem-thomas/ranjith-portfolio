@@ -7,7 +7,7 @@ import Footer from '@/components/footer/footer'
 const Barlow = Barlow_Condensed({
   subsets: ['latin'],
   weight: '400',
-  variable:'--barlow-font'
+  display:'swap'
 })
 export const metadata: Metadata = {
   title: 'Ranjith Mathew',
@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`text-text ${Barlow.className} bg-background`}>
+    <html lang="en" className={`${Barlow.className}`}>
+      <body className={`text-text bg-background`}>
         <Navbar/>
         {children}
         <Footer/>
