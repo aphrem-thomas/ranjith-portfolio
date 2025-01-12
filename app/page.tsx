@@ -13,7 +13,7 @@ const anton = Anton({
 });
 
 async function Page() {
-  const data = await fetch(`https://ranjithmathew.com/events?page=1`, {
+  const data = await fetch(process.env.NEXT_PUBLIC_URL+`/api/events?page=1`, {
     cache: "no-store",
   });
   const value = await data.json();
