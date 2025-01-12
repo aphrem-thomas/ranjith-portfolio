@@ -7,7 +7,7 @@ import Jobs from "@/app/model/jobs.model";
 
 
 async function Page({ params }: { params: { id: string } }) {
-  const jobList = await fetch(`http://localhost:4000/api/jobs?page=${params.id}`,{ cache: 'no-store' });
+  const jobList = await fetch(`http://ranjithmathew.com/api/jobs?page=${params.id}`,{ cache: 'no-store' });
   const data = await jobList.json()
   const getLinks = (id:string)=>{
     let links=[];

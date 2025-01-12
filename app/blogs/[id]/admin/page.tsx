@@ -30,7 +30,7 @@ function BlogPage({params:{id}}:{params:{id:string}}){
         })
     }
     const approveBlog = (id:string, ver:boolean)=> {
-        fetch(`http://localhost:4000/api/blogs/${id}?approve=${ver}`,{ method:'POST', cache: 'no-store' }).then((res)=>{
+        fetch(`http://ranjithmathew.com/api/blogs/${id}?approve=${ver}`,{ method:'POST', cache: 'no-store' }).then((res)=>{
             if(res.ok){
                 getBlogData(id)
             } else {
@@ -40,7 +40,7 @@ function BlogPage({params:{id}}:{params:{id:string}}){
         }) 
     }
     const deleteBlog = (id:string)=> {
-        fetch(`http://localhost:4000/api/blogs/${id}`,{ method:'DELETE', cache: 'no-store' }).then((res)=>{
+        fetch(`http://ranjithmathew.com/api/blogs/${id}`,{ method:'DELETE', cache: 'no-store' }).then((res)=>{
             if(res.ok){
                 router.push(`/blogs/`)
                 getBlogData(id)

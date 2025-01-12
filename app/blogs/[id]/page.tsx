@@ -9,7 +9,7 @@ const Playfair = Playfair_Display({
 })
 
 async function getBlogData(id:string){
-    const data = await fetch(`http://localhost:4000/api/blogs/${id}`,{ cache: 'no-store' })
+    const data = await fetch(`http://ranjithmathew.com/api/blogs/${id}`,{ cache: 'no-store' })
     return data;
 }
 
