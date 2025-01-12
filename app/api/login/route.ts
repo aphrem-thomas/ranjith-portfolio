@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+export const preferredRegion = 'pdx1';
 import User from "@/app/model/user.model";
 import {connect} from '@/app/config/db.config'
 import bcrypt from 'bcrypt'
