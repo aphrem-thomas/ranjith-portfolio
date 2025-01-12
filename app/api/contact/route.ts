@@ -1,5 +1,3 @@
-export const runtime = 'edge';
-export const preferredRegion = 'pdx1';
 import { connect } from '@/app/config/db.config';
 import transporter from '@/app/config/mailer';
 import sendEmail from '@/app/helper/sendEmail';

@@ -1,6 +1,4 @@
 
-export const runtime = 'edge';
-export const preferredRegion = 'pdx1';
 import { connect } from "@/app/config/db.config";
 import { authenticate } from "@/app/helper/authenticate";
 import Jobs from "@/app/model/jobs.model";
